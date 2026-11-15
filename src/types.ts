@@ -23,6 +23,11 @@ export interface Question {
    * false: ALES formatına göre hazırlanmış özgün alıştırma sorusudur.
    */
   official: boolean;
+  /**
+   * Sorunun resmî kitapçıktaki sayfa numarası. Yalnızca resmî sorularda
+   * (official: true) anlamlıdır; bağlantı ...pdf#page=N biçiminde açılır.
+   */
+  pdfPage?: number;
   stem: string;
   options: string[];
   /** Doğru cevabın options dizisindeki indeksi (0 = A) */

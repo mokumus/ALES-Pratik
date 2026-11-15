@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { LETTERS, TOPICS, exams, examKey, questions, searchQuestions } from "../data";
+import { LETTERS, TOPICS, exams, examKey, mathToPlain, questions, searchQuestions } from "../data";
 import type { Section } from "../types";
 import { useProgress } from "../lib/store";
 import { navigate } from "../lib/router";
@@ -150,7 +150,7 @@ export default function Bank({ params }: { params: URLSearchParams }) {
               <li key={question.id} className="card qrow">
                 <div className="qrow__main">
                   <MetaChips question={question} />
-                  <p className="qrow__stem">{question.stem.replace(/\s*\n+\s*/g, " ")}</p>
+                  <p className="qrow__stem">{mathToPlain(question.stem).replace(/\s*\n+\s*/g, " ")}</p>
                   <div className="qrow__foot">
                     {record ? (
                       <span className={`badge ${record.correct ? "badge--ok" : "badge--no"}`}>
@@ -191,7 +191,19 @@ export default function Bank({ params }: { params: URLSearchParams }) {
         <p>
           Etiketlerdeki sınav dönemleri (2026 ALES/1, 2025 ALES/2, 2025 ALES/1) soruların hazırlanırken
           temel alındığı sınavları gösterir. “Örnek” etiketli sorular bu sınavların kapsam ve zorluk
-          düzeyine göre yazılmış özgün alıştırma sorularıdır.
+          düzeyine göre yazılmış <strong>özgün alıştırma sorularıdır</strong>; ÖSYM kitapçıklarında bu
+          hâliyle yer almazlar.
+        </p>
+        <p className="notice__small">
+          Bu nedenle örnek sorularda kitapçık bağlantısı gösterilmez; yanlış yönlendirmemek için yalnızca
+          gerçekten o kitapçıktan alınmış sorularda (<code>official: true</code>, istenirse{" "}
+          <code>pdfPage</code> ile sayfa numarası) bağlantı görünür. Kitapçıkların kendisine ana sayfadaki
+          sınav dönemi kartlarındaki “Kitapçık ↗” bağlantısından ulaşabilirsin; PDF'ler projede
+          barındırılmaz, doğrudan ÖSYM'nin sunucusundan açılır.
+        </p>
+        <p className="notice__small">
+          Her sorunun kendi adresi vardır: bir soruyu açtığında adres çubuğundaki bağlantı o soruyu
+          gösterir, bağlantıyı kaydedip daha sonra aynı soruya dönebilirsin.
         </p>
       </div>
     </div>

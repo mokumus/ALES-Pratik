@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Question, Section } from "../types";
 import { SECTION_LABELS, TOPICS, examKey, exams, questions } from "../data";
-import { navigate } from "../lib/router";
+import { navigate, replaceParams } from "../lib/router";
 import { scoreOf, useProgress, type ProgressState } from "../lib/store";
 import QuestionView from "../components/QuestionView";
 
@@ -96,6 +96,24 @@ export default function Practice({ params }: { params: URLSearchParams }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [set, exam, section, topic, n, targetId, salt, seed]);
 
+  /*
+   * Ekranda görünen soruyu adres çubuğuna yaz. Böylece her sorunun
+   * kopyalanabilir bir bağlantısı olur ve sayfa yenilendiğinde aynı soru açılır.
+   * replaceParams kullanıldığı için her soru gezinmesi geçmişe yeni kayıt eklemez.
+   */
+  useEffect(() => {
+    const active = list[index];
+    if (!active) return;
+    replaceParams("practice", {
+      set: set === "all" ? undefined : set,
+      exam: exam || undefined,
+      section: section || undefined,
+      topic: topic || undefined,
+      n: set === "quick" ? n : undefined,
+      q: active.id,
+    });
+  }, [list, index, set, exam, section, topic, n]);
+
   const changeOptions = (patch: Partial<BuildOptions>) => {
     const merged = { ...options, ...patch };
     navigate("practice", {
@@ -172,8 +190,8 @@ export default function Practice({ params }: { params: URLSearchParams }) {
             >
               Yeniden çöz
             </button>
-            <button type="button" className="btn btn--primary" onClick={() => navigate("stats")}>
-              İstatistikleri gör
+            <button type="button" className="btn btn--primary" onClick={() => navigate("bank")}>
+              Soru bankasına git
             </button>
           </div>
         </div>

@@ -20,8 +20,12 @@ adresinden açılır.
 - **Filtreler** — sınav dönemi, bölüm, konu ve durum (çözülen / çözülmeyen / yanlış yapılan) +
   metin araması.
 - **Test modları** — tüm sorular, çözülmemişler, yanlışlarım ve 10 soruluk rastgele hızlı test.
-- **İstatistikler** — toplam başarı, bölüm, sınav ve konu bazında doğruluk oranları.
+- **Her sorunun kendi adresi var.** Çalışma ekranında gezinirken adres çubuğu o soruyu gösterir
+  (`#/calis?q=2026-1-say-30`); bağlantıyı kaydedip sonra doğrudan aynı soruya dönebilirsin.
+- **Kitapçık bağlantısı** — resmî sorularda, sorunun alındığı ÖSYM temel soru kitapçığına (PDF) link
+  verilir; sınav kitapçıklarına ana sayfadaki dönem kartlarından da ulaşılır.
 - **Karanlık / aydınlık tema**, mobil uyumlu düzen, klavye kısayolları.
+- **Matematik dizgisi** — kesirler, kökler ve üslü ifadeler kitapçıktaki gibi üst üste dizilir (KaTeX).
 - **Veri güdümlü** — yeni soru eklemek için tek bir JSON dosyası düzenlenir; kod değişmez.
 
 ### Klavye kısayolları (çalışma ekranı)
@@ -78,6 +82,35 @@ aynı yapıda bir kayıt ekleyip `npm run validate` çalıştırmak yeterlidir.
 }
 ```
 
+Resmî bir soru eklerken `official: true` yapın; isterseniz kitapçıktaki sayfa numarasını da verin:
+
+```json
+{
+  "id": "2026-1-say-30",
+  "official": true,
+  "pdfPage": 11,
+  "...": "diğer alanlar aynı"
+}
+```
+
+Bu durumda soru kartında “Resmî” etiketi ve doğrudan kitapçığın o sayfasına giden bağlantı görünür
+(`...tsk_als10052026.pdf#page=11`).
+
+### Matematik yazımı
+
+Kesir, kök, üs gibi ifadeler KaTeX ile dizilir. Soru metninde, seçeneklerde ve çözümde:
+
+- `$...$` → satır içi matematik: `$\frac{1}{2}$`, `$x^2 + 3x$`
+- `$$...$$` → ayrı satır (blok) matematik: `$$\frac{-3x-1}{4} + \frac{2x+2}{3} = 1$$`
+
+```json
+"stem": "$$\\\\frac{-3x-1}{4} + \\\\frac{2x+2}{3} + \\\\frac{x-3}{2} = 1$$\\n\\neşitliğini sağlayan $x$ kaçtır?"
+```
+
+Dolar işareti kullanılmayan metin olduğu gibi yazılır; mevcut sorulardaki `²`, `√`, `·` gibi
+Unicode işaretler de çalışmaya devam eder. Liste görünümünde matematik düz metne indirgenir
+(`mathToPlain`).
+
 | Alan | Açıklama |
 | --- | --- |
 | `id` | Benzersiz kimlik. Öneri: `yıl-dönem-bölüm-sıra` (`2026-2-say-31`). |
@@ -86,22 +119,29 @@ aynı yapıda bir kayıt ekleyip `npm run validate` çalıştırmak yeterlidir.
 | `topic` | Konu adı. Filtre listesi bu alandan otomatik üretilir. |
 | `no` | Sorunun orijinal sınavdaki numarası (sayısal 1–50, sözel 51–100). |
 | `difficulty` | `kolay`, `orta`, `zor`. |
-| `official` | `true` ise soru resmî kaynaktan alınmıştır; arayüzde “Örnek” etiketi görünmez. |
+| `official` | `true` ise soru resmî kaynaktan alınmıştır; arayüzde “Resmî” etiketi görünür ve kitapçık bağlantısı çıkar. `false` ise “Örnek” etiketi görünür. |
+| `pdfPage` | İsteğe bağlı. Sorunun resmî kitapçıktaki sayfa numarası; yalnızca `official: true` ile kullanılabilir. |
 | `stem` | Soru metni. Düz metin; `\n\n` ile paragraf ayrılır. |
 | `options` | Tam olarak **5** seçenek (A–E). |
 | `answer` | Doğru seçeneğin indeksi: `0` = A … `4` = E. |
 | `solution` | Çözüm metni. `\n\n` ile paragraflara ayrılır. |
 
 Yeni bir sınav dönemi eklendiğinde (örn. 2026 ALES/2) ana sayfadaki “Sınav dönemleri”, filtreler ve
-istatistikler kendiliğinden güncellenir.
+konu listeleri kendiliğinden güncellenir. O dönemin kitapçık PDF adresini
+`src/data/booklets.ts` dosyasına ekleyin; bağlantılar otomatik görünür.
 
 ### İçerik ve telif notu
 
-Depodaki 48 soru, 2025–2026 ALES sınavlarının kapsamına ve zorluk düzeyine göre **özgün olarak
-yazılmış alıştırma sorularıdır**; resmî ÖSYM kitapçıklarından birebir alınmamıştır. Bu yüzden
-`official: false` olarak işaretlenmiş ve arayüzde “Örnek” etiketiyle gösterilir. Resmî soruları
-eklemek isterseniz aynı şemayla `official: true` olarak ekleyebilirsiniz — ÖSYM sorularının telif
-koşullarını kontrol etmek yayıncının sorumluluğundadır.
+Depodaki 101 sorunun 100'ü, 2025–2026 ALES sınavlarının kapsamına ve zorluk düzeyine göre **özgün
+olarak yazılmış alıştırma sorularıdır**; `official: false` olarak işaretlenmiş ve arayüzde “Örnek”
+etiketiyle gösterilir. 1 soru ise 2026 ALES/1 kitapçığından alınmıştır ve `official: true` olarak
+işaretlidir.
+
+Kitapçık bağlantısı ilkesi: PDF bağlantısı yalnızca gerçekten o kitapçıkta yer alan sorularda
+gösterilir. Örnek sorularda bağlantı verilmez, çünkü o sorular ÖSYM kitapçıklarında bulunmaz; bu tür
+bir bağlantı kullanıcıyı yanıltır. Sınavların kitapçıklarına ana sayfadaki dönem kartlarından
+erişilebilir. PDF'ler projede barındırılmaz, doğrudan ÖSYM'nin sunucusundan açılır; resmî soruların
+telif koşullarını kontrol etmek yayıncının sorumluluğundadır.
 
 ---
 
@@ -166,22 +206,24 @@ ALES-Pratik/
    ├─ types.ts                # Question tipi (soru şeması)
    ├─ data/
    │  ├─ questions.json       # ← soru bankası (tek düzenlenecek dosya)
-   │  └─ index.ts             # sınav/konu türetimi, arama
+   │  ├─ booklets.ts          # sınav dönemi → resmî kitapçık PDF adresi
+   │  └─ index.ts             # sınav/konu türetimi, arama, düz metin yardımcıları
    ├─ lib/
    │  ├─ router.ts            # hash tabanlı yönlendirme (#/calis, #/sorular…)
    │  └─ store.ts             # localStorage ilerleme + tema
    ├─ components/
    │  ├─ Layout.tsx           # üst menü, tema düğmesi, alt bilgi
-   │  ├─ MetaChips.tsx        # sınav/bölüm/konu etiketleri
+   │  ├─ MetaChips.tsx        # sınav/bölüm/konu etiketleri + kitapçık bağlantısı
+   │  ├─ MathText.tsx         # $...$ / $$...$$ matematik dizgisi (KaTeX)
    │  └─ QuestionView.tsx     # soru kartı, seçenekler, cevap + çözüm panelleri
    └─ pages/
-      ├─ Home.tsx             # tanıtım, sınav dönemleri
-      ├─ Practice.tsx         # çalışma ekranı, test modları
-      ├─ Bank.tsx             # filtrelenebilir soru listesi
-      └─ Stats.tsx            # istatistikler
+      ├─ Home.tsx             # tanıtım, sınav dönemleri, konular
+      ├─ Practice.tsx         # çalışma ekranı, test modları, adres güncellemesi
+      └─ Bank.tsx             # filtrelenebilir soru listesi
 ```
 
 ## Teknoloji
 
-React 19 + TypeScript + Vite. Ek çalışma zamanı bağımlılığı yoktur; yazı tipleri sistem
-yazı tiplerinden seçilir, bu yüzden ilk açılış hızlıdır ve çevrimdışı da çalışır.
+React 19 + TypeScript + Vite + KaTeX. Çalışma zamanında sunucu veya veritabanı yoktur; yazı tipleri
+sistem yazı tiplerinden seçilir, matematik yazı tipleri ise KaTeX ile birlikte gelir ve yalnızca
+ihtiyaç duyulduğunda indirilir.

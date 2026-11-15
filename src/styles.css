@@ -432,10 +432,6 @@ kbd {
   grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
 }
 
-.grid--features {
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
-
 .grid--two {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
@@ -692,6 +688,29 @@ kbd {
   color: var(--muted);
 }
 
+.examcard__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.examcard__pdf {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--line-strong);
+  padding-bottom: 1px;
+  white-space: nowrap;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.examcard__pdf:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
 /* ---------- ilerleme çubuğu ---------- */
 
 .bar {
@@ -715,29 +734,6 @@ kbd {
 
 .bar > span.bar--low {
   background: linear-gradient(90deg, var(--no), color-mix(in srgb, var(--no) 60%, #f0a39c));
-}
-
-/* ---------- özellik kartları ---------- */
-
-.feature {
-  padding: 20px;
-}
-
-.feature__num {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--accent);
-}
-
-.feature h3 {
-  margin: 8px 0 6px;
-  font-size: 16px;
-}
-
-.feature p {
-  color: var(--muted);
-  font-size: 13.5px;
 }
 
 /* ---------- bilgi kutusu ---------- */
@@ -802,49 +798,73 @@ kbd {
   flex-wrap: wrap;
 }
 
-/* ---------- hızlı bağlantılar ---------- */
+/* ---------- konu panelleri ---------- */
 
-.quicklinks {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 10px;
+.topicpanel {
+  display: flex;
+  flex-direction: column;
+  padding: 18px 18px 14px;
 }
 
-.quicklink {
+.topicpanel__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.topicpanel__head h3 {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  background: var(--surface);
-  cursor: pointer;
-  text-align: left;
-  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  gap: 8px;
+  font-size: 15px;
 }
 
-.quicklink:hover {
-  border-color: var(--line-strong);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
-}
-
-.quicklink strong {
-  display: block;
-  font-size: 13.5px;
-  font-weight: 600;
-}
-
-.quicklink small {
-  display: block;
+.topicpanel__head span {
   font-size: 12px;
   color: var(--muted);
 }
 
-.quicklink__arrow {
-  margin-left: auto;
+.topicpanel__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.topicchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--ink-2);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.topicchip:hover {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.topicchip__count {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
   color: var(--muted);
-  font-size: 15px;
+}
+
+.topicchip:hover .topicchip__count {
+  color: var(--accent);
 }
 
 .dot {
@@ -1066,6 +1086,26 @@ kbd {
   font-weight: 450;
 }
 
+.chip--link {
+  gap: 4px;
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent-line);
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.chip--link:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.chip--official {
+  background: var(--ok-soft);
+  color: var(--ok);
+  border-color: var(--ok-line);
+}
+
 .chip--diff-kolay {
   color: var(--ok);
   background: var(--ok-soft);
@@ -1105,6 +1145,44 @@ kbd {
   white-space: pre-line;
   letter-spacing: 0;
 }
+
+/* ---------- matematik dizgisi (KaTeX) ---------- */
+
+.mathtext {
+  white-space: normal;
+}
+
+.mathblock {
+  display: block;
+  margin: 12px 0;
+}
+
+.mathblock:first-child {
+  margin-top: 2px;
+}
+
+.mathblock:last-child {
+  margin-bottom: 2px;
+}
+
+.mathblock .katex-display {
+  margin: 0;
+  text-align: left;
+}
+
+/* KaTeX, blok denklemleri kendi içinde ortalar; kitapçıktaki gibi sola yaslıyoruz. */
+.mathblock .katex-display > .katex {
+  text-align: left;
+}
+
+.mathblock .katex {
+  font-size: 1.15em;
+}
+
+.mathinline .katex {
+  font-size: 1.02em;
+}
+
 
 .options {
   display: grid;

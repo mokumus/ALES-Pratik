@@ -59,6 +59,38 @@ export function getQuestion(id: string): Question | undefined {
   return questions.find((q) => q.id === id);
 }
 
+/** KaTeX ifadelerini düz metne indirger (liste önizlemesi ve arama için). */
+function texToPlain(tex: string): string {
+  let out = tex;
+  for (let i = 0; i < 3; i += 1) {
+    out = out.replace(/\\[dt]?frac\s*\{([^{}]*)\}\s*\{([^{}]*)\}/g, "($1)/($2)");
+  }
+  return out
+    .replace(/\\sqrt\s*\{([^{}]*)\}/g, "√($1)")
+    .replace(/\\text\s*\{([^{}]*)\}/g, "$1")
+    .replace(/\\left|\\right/g, "")
+    .replace(/\\cdot/g, "·")
+    .replace(/\\times/g, "×")
+    .replace(/\\div/g, "÷")
+    .replace(/\\pi/g, "π")
+    .replace(/\\infty/g, "∞")
+    .replace(/\\le(q)?/g, "≤")
+    .replace(/\\ge(q)?/g, "≥")
+    .replace(/\\ne(q)?/g, "≠")
+    .replace(/\\pm/g, "±")
+    .replace(/\\%/g, "%")
+    .replace(/[{}$]/g, "")
+    .replace(/\\[a-zA-Z]+/g, "")
+    .replace(/[ \t]{2,}/g, " ");
+}
+
+export function mathToPlain(text: string): string {
+  if (!text.includes("$")) return text;
+  return text
+    .replace(/\$\$([\s\S]*?)\$\$/g, (_, tex: string) => texToPlain(tex))
+    .replace(/\$([^$\n]+)\$/g, (_, tex: string) => texToPlain(tex));
+}
+
 export function normalizeText(value: string): string {
   return value
     .toLocaleLowerCase("tr")
@@ -72,6 +104,8 @@ export function searchQuestions(list: Question[], term: string): Question[] {
   const needle = normalizeText(term.trim());
   if (!needle) return list;
   return list.filter((q) =>
-    normalizeText(`${q.stem} ${q.topic} ${examLabel(q)} ${q.options.join(" ")}`).includes(needle),
+    normalizeText(
+      `${mathToPlain(q.stem)} ${q.topic} ${examLabel(q)} ${q.options.map(mathToPlain).join(" ")}`,
+    ).includes(needle),
   );
 }

@@ -2,6 +2,7 @@ import { useCallback, useEffect, type ReactNode } from "react";
 import type { Question } from "../types";
 import { LETTERS } from "../data";
 import MetaChips from "./MetaChips";
+import MathText from "./MathText";
 import { recordAnswer, revealQuestion, useProgress } from "../lib/store";
 
 function Chevron({ dir }: { dir: "left" | "right" }) {
@@ -90,7 +91,7 @@ export default function QuestionView({
       </div>
 
       <h2 className="qcard__stem" id={`stem-${question.id}`}>
-        {question.stem}
+        <MathText text={question.stem} />
       </h2>
 
       <div className="options" role="radiogroup" aria-label="Cevap seçenekleri">
@@ -118,7 +119,9 @@ export default function QuestionView({
               aria-checked={selected}
             >
               <span className="option__letter">{LETTERS[i]}</span>
-              <span className="option__text">{option}</span>
+              <span className="option__text">
+                <MathText text={option} />
+              </span>
               {isCorrect && <span className="option__mark" aria-label="doğru cevap">✓</span>}
               {isWrong && <span className="option__mark" aria-label="yanlış cevap">✕</span>}
             </button>
@@ -163,7 +166,9 @@ export default function QuestionView({
                   ? `Doğru! Cevabınız: ${LETTERS[answer.choice]}`
                   : `Yanlış. Cevabınız: ${LETTERS[answer.choice]} · Doğru cevap: ${LETTERS[question.answer]}`}
             </strong>
-            <p>{question.options[question.answer]}</p>
+            <p>
+              <MathText text={question.options[question.answer]} />
+            </p>
           </div>
         </div>
       )}
@@ -175,7 +180,9 @@ export default function QuestionView({
             <span className="solution__answer">Doğru cevap: {LETTERS[question.answer]}</span>
           </header>
           {question.solution.split("\n\n").map((paragraph, i) => (
-            <p key={i}>{paragraph}</p>
+            <p key={i}>
+              <MathText text={paragraph} />
+            </p>
           ))}
         </section>
       )}

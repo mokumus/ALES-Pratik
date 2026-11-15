@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export type View = "home" | "practice" | "bank" | "stats";
+export type View = "home" | "practice" | "bank";
 
 export interface RouteInfo {
   view: View;
@@ -11,11 +11,20 @@ const BASE: Record<View, string> = {
   home: "/",
   practice: "/calis",
   bank: "/sorular",
-  stats: "/istatistik",
 };
 
 type ParamValue = string | number | undefined | null;
 
+/**
+ * Adresler:
+ *   #/                  ana sayfa
+ *   #/calis?set=unsolved&exam=2026-1&q=2026-1-say-04
+ *   #/sorular?section=sozel
+ *
+ * `q` parametresi, açılacak sorunun kimliğidir. Çalışma ekranı gezinirken bu
+ * parametreyi günceller; böylece adres çubuğundaki bağlantı her zaman ekranda
+ * görünen soruyu gösterir ve paylaşılabilir/kaydedilebilir olur.
+ */
 export function pathFor(view: View, params?: Record<string, ParamValue>): string {
   const search = new URLSearchParams();
   if (params) {
@@ -46,9 +55,13 @@ function parse(hash: string): RouteInfo {
   const [path, query = ""] = cleaned.split("?");
   const params = new URLSearchParams(query);
   let view: View = "home";
-  if (path.startsWith("/calis")) view = "practice";
-  else if (path.startsWith("/sorular")) view = "bank";
-  else if (path.startsWith("/istatistik")) view = "stats";
+
+  if (path.startsWith("/calis")) {
+    view = "practice";
+  } else if (path.startsWith("/sorular")) {
+    view = "bank";
+  }
+
   return { view, params };
 }
 

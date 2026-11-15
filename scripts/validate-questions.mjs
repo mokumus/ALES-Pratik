@@ -74,6 +74,15 @@ questions.forEach((q, index) => {
   if (typeof q.stem === "string" && q.stem.trim().length < 10) {
     errors.push(`${where}: "stem" çok kısa.`);
   }
+
+  if (q.pdfPage !== undefined) {
+    if (!Number.isInteger(q.pdfPage) || q.pdfPage < 1) {
+      errors.push(`${where}: "pdfPage" pozitif bir sayfa numarası olmalı.`);
+    }
+    if (!q.official) {
+      errors.push(`${where}: "pdfPage" yalnızca resmî sorularda (official: true) kullanılabilir.`);
+    }
+  }
 });
 
 if (errors.length > 0) {

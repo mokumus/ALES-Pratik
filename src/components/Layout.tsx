@@ -7,7 +7,6 @@ const NAV: { view: View; href: string; label: string; short: string }[] = [
   { view: "home", href: "#/", label: "Ana Sayfa", short: "Ana" },
   { view: "practice", href: "#/calis", label: "Çalış", short: "Çalış" },
   { view: "bank", href: "#/sorular", label: "Soru Bankası", short: "Bank" },
-  { view: "stats", href: "#/istatistik", label: "İstatistik", short: "İstatistik" },
 ];
 
 function SunIcon() {

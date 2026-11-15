@@ -1,4 +1,5 @@
-import { allTopics, exams, questions, SECTION_LABELS } from "../data";
+import { allTopics, exams, questions, SECTION_LABELS, TOPICS } from "../data";
+import { BOOKLETS } from "../data/booklets";
 import { scoreOf, useProgress } from "../lib/store";
 import { navigate } from "../lib/router";
 
@@ -13,7 +14,7 @@ export default function Home() {
         <div className="hero__content">
           <span className="eyebrow">2025–2026 ALES · Güncel soru bankası</span>
           <h1>
-            Geçmiş ALES sorularıyla
+            ALES sorularıyla
             <br />
             <em>gerçek sınav temposunda</em> çalış.
           </h1>
@@ -72,13 +73,14 @@ export default function Home() {
       <section className="block">
         <div className="block__head">
           <h2>Sınav dönemleri</h2>
-          <p>Son bir yılın sınavlarından derlenen sorularla dönem dönem çalış.</p>
+          <p>2026 ALES/1, 2025 ALES/2 ve 2025 ALES/1 kapsamına göre hazırlanmış sorularla dönem dönem çalış.</p>
         </div>
         <div className="grid grid--exams">
           {exams.map((exam) => {
             const list = questions.filter((q) => `${q.year}-${q.session}` === exam.key);
             const score = scoreOf(list, progress);
             const ratio = Math.round((score.solved / exam.total) * 100);
+            const booklet = BOOKLETS[exam.key];
             return (
               <article className="card examcard" key={exam.key}>
                 <header className="examcard__head">
@@ -99,9 +101,22 @@ export default function Home() {
                 </div>
                 <footer className="examcard__foot">
                   <span>{score.solved === 0 ? "Henüz başlanmadı" : `${score.solved}/${exam.total} çözüldü · %${score.accuracy} doğru`}</span>
-                  <button type="button" className="btn btn--ghost btn--sm" onClick={() => navigate("practice", { exam: exam.key, set: "all" })}>
-                    Çöz →
-                  </button>
+                  <span className="examcard__actions">
+                    {booklet && (
+                      <a
+                        className="examcard__pdf"
+                        href={booklet.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={`${booklet.label} — yeni sekmede açılır (PDF)`}
+                      >
+                        Kitapçık ↗
+                      </a>
+                    )}
+                    <button type="button" className="btn btn--ghost btn--sm" onClick={() => navigate("practice", { exam: exam.key, set: "all" })}>
+                      Çöz →
+                    </button>
+                  </span>
                 </footer>
               </article>
             );
@@ -111,40 +126,47 @@ export default function Home() {
 
       <section className="block">
         <div className="block__head">
-          <h2>Nasıl çalışılır?</h2>
-          <p>Araç, sınavda karşılaşacağın akışı birebir taklit eder.</p>
+          <h2>Konuya göre çalış</h2>
+          <p>Bir konu seç, yalnızca o konunun sorularıyla çalış. Sayı, o konudaki çözülen/toplam soruyu gösterir.</p>
         </div>
-        <div className="grid grid--features">
-          <article className="card feature">
-            <span className="feature__num">01</span>
-            <h3>Filtrele</h3>
-            <p>Yıla, bölüme ve konuya göre çalış. Eksik olduğun konuyu, sadece o konunun sorularıyla kapat.</p>
-          </article>
-          <article className="card feature">
-            <span className="feature__num">02</span>
-            <h3>Önce kendin dene</h3>
-            <p>Seçeneği işaretle. Doğru cevap hemen açılmaz; böylece gerçek sınav koşulunda düşünmeye devam edersin.</p>
-          </article>
-          <article className="card feature">
-            <span className="feature__num">03</span>
-            <h3>Cevabı ve çözümü aç</h3>
-            <p>Tek tuşla doğru cevabı, ardından adım adım çözümü gör. Doğru/yanlış durumun cihazında saklanır.</p>
-          </article>
-        </div>
-      </section>
-
-      <section className="block">
-        <div className="notice">
-          <h3>Soru bankası hakkında</h3>
-          <p>
-            Bu sürümdeki sorular, 2025–2026 ALES sınavlarının konu dağılımına ve zorluk düzeyine göre
-            hazırlanmış <strong>özgün alıştırma sorularıdır</strong>; resmî ÖSYM kitapçıklarından birebir
-            alınmamıştır. Banka, resmî sorular eklendiğinde aynı arayüzle çalışacak şekilde tasarlandı.
-          </p>
-          <p className="notice__small">
-            Yeni soru eklemek için <code>src/data/questions.json</code> dosyasına aynı yapıda kayıt eklemek
-            yeterli. <code>official: true</code> alanı, sorunun resmî kaynaktan geldiğini belirtir.
-          </p>
+        <div className="grid grid--two">
+          {(["sayisal", "sozel"] as const).map((section) => {
+            const list = questions.filter((q) => q.section === section);
+            const score = scoreOf(list, progress);
+            return (
+              <article className="card topicpanel" key={section}>
+                <header className="topicpanel__head">
+                  <h3>
+                    <span className={`dot dot--${section}`} />
+                    {SECTION_LABELS[section]}
+                  </h3>
+                  <span>
+                    {list.length} soru · {TOPICS[section].length} konu
+                    {score.solved > 0 ? ` · ${score.solved} çözüldü` : ""}
+                  </span>
+                </header>
+                <div className="topicpanel__list">
+                  {TOPICS[section].map((topic) => {
+                    const topicList = list.filter((q) => q.topic === topic);
+                    const topicScore = scoreOf(topicList, progress);
+                    return (
+                      <button
+                        key={topic}
+                        type="button"
+                        className="topicchip"
+                        onClick={() => navigate("practice", { section, topic, set: "all" })}
+                      >
+                        <span className="topicchip__name">{topic}</span>
+                        <span className="topicchip__count">
+                          {topicScore.solved > 0 ? `${topicScore.solved}/${topicList.length}` : topicList.length}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
 
@@ -161,41 +183,13 @@ export default function Home() {
               <button type="button" className="btn btn--primary" onClick={() => navigate("practice", { set: "unsolved" })}>
                 Çözülmemişleri çalış
               </button>
-              <button type="button" className="btn btn--ghost" onClick={() => navigate("stats")}>
-                İstatistikler
+              <button type="button" className="btn btn--ghost" onClick={() => navigate("practice", { set: "wrong" })}>
+                Yanlışlarımı tekrar çöz
               </button>
             </div>
           </div>
         </section>
       )}
-
-      <section className="block block--tight">
-        <div className="quicklinks">
-          {(["sayisal", "sozel"] as const).map((section) => (
-            <button
-              type="button"
-              key={section}
-              className="quicklink"
-              onClick={() => navigate("practice", { section, set: "all" })}
-            >
-              <span className={`dot dot--${section}`} />
-              <span>
-                <strong>{SECTION_LABELS[section]} bölüm</strong>
-                <small>{questions.filter((q) => q.section === section).length} soru</small>
-              </span>
-              <span className="quicklink__arrow">→</span>
-            </button>
-          ))}
-          <button type="button" className="quicklink" onClick={() => navigate("bank")}>
-            <span className="dot dot--neutral" />
-            <span>
-              <strong>Tüm soru bankası</strong>
-              <small>Filtrele ve ara</small>
-            </span>
-            <span className="quicklink__arrow">→</span>
-          </button>
-        </div>
-      </section>
     </div>
   );
 }
