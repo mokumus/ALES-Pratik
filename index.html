@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ALES Pratik — Geçmiş ALES Sorularıyla Çalış</title>
+    <meta
+      name="description"
+      content="2025–2026 ALES sorularıyla konu konu çalış. Her sorunun hangi sınavdan geldiğini gör, cevabı ve adım adım çözümü istediğinde aç."
+    />
+    <meta name="theme-color" content="#0f6b5c" />
+    <meta name="color-scheme" content="light dark" />
+    <meta property="og:title" content="ALES Pratik" />
+    <meta
+      property="og:description"
+      content="Geçmiş ALES sorularıyla gerçek sınav temposunda çalış. Cevabı gizle, çözümü adım adım gör."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <script>
+      (function () {
+        try {
+          var theme = localStorage.getItem("ales-pratik:theme");
+          if (theme !== "light" && theme !== "dark") {
+            theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          }
+          document.documentElement.dataset.theme = theme;
+        } catch (error) {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
