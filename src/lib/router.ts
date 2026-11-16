@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export type View = "home" | "practice" | "bank";
+export type View = "home" | "practice" | "bank" | "official";
 
 export interface RouteInfo {
   view: View;
@@ -11,6 +11,7 @@ const BASE: Record<View, string> = {
   home: "/",
   practice: "/calis",
   bank: "/sorular",
+  official: "/resmi",
 };
 
 type ParamValue = string | number | undefined | null;
@@ -20,6 +21,7 @@ type ParamValue = string | number | undefined | null;
  *   #/                  ana sayfa
  *   #/calis?set=unsolved&exam=2026-1&q=2026-1-say-04
  *   #/sorular?section=sozel
+ *   #/resmi?e=2021-1    resmî sınav arşivi / optik form
  *
  * `q` parametresi, açılacak sorunun kimliğidir. Çalışma ekranı gezinirken bu
  * parametreyi günceller; böylece adres çubuğundaki bağlantı her zaman ekranda
@@ -60,6 +62,8 @@ function parse(hash: string): RouteInfo {
     view = "practice";
   } else if (path.startsWith("/sorular")) {
     view = "bank";
+  } else if (path.startsWith("/resmi")) {
+    view = "official";
   }
 
   return { view, params };

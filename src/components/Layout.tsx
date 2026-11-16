@@ -2,11 +2,13 @@ import { useEffect, useState, type ReactNode } from "react";
 import { applyTheme, readTheme, type Theme } from "../lib/store";
 import type { View } from "../lib/router";
 import { questions } from "../data";
+import { officialCounts } from "../data/officialExams";
 
 const NAV: { view: View; href: string; label: string; short: string }[] = [
   { view: "home", href: "#/", label: "Ana Sayfa", short: "Ana" },
   { view: "practice", href: "#/calis", label: "Çalış", short: "Çalış" },
   { view: "bank", href: "#/sorular", label: "Soru Bankası", short: "Bank" },
+  { view: "official", href: "#/resmi", label: "Resmî Sınavlar", short: "Resmî" },
 ];
 
 function SunIcon() {
@@ -77,8 +79,9 @@ export default function Layout({ view, children }: { view: View; children: React
           <span>{questions.length} soru · {new Set(questions.map((q) => `${q.year}-${q.session}`)).size} sınav dönemi</span>
         </div>
         <p className="footer__note">
-          Bağımsız bir çalışma aracıdır; ÖSYM ile bağlantılı değildir. Soruların kaynağı için{" "}
-          <a href="#/sorular">soru bankası</a> sayfasındaki bilgi notuna bakın.
+          Bağımsız bir çalışma aracıdır; ÖSYM ile bağlantılı değildir. {officialCounts.total} ÖSYM
+          kitapçığı <a href="#/resmi">resmî sınav arşivinde</a>, soruların kaynağı{" "}
+          <a href="#/sorular">soru bankası</a> sayfasındaki bilgi notunda.
         </p>
       </footer>
     </div>

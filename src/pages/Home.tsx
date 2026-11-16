@@ -1,5 +1,6 @@
 import { allTopics, exams, questions, SECTION_LABELS, TOPICS } from "../data";
 import { BOOKLETS } from "../data/booklets";
+import { officialCounts } from "../data/officialExams";
 import { scoreOf, useProgress } from "../lib/store";
 import { navigate } from "../lib/router";
 
@@ -121,6 +122,31 @@ export default function Home() {
               </article>
             );
           })}
+        </div>
+      </section>
+
+      <section className="block">
+        <div className="block__head">
+          <h2>Resmî sınav arşivi</h2>
+          <p>
+            {officialCounts.total} ÖSYM kitapçığının tamamı: {officialCounts.tam} tam sınav,{" "}
+            {officialCounts.yuzde10} %10 kitapçık. Bağlantılar doğrudan ÖSYM'nin doküman sunucusuna gider.
+          </p>
+        </div>
+        <div className="cta">
+          <div>
+            <h3>Gerçek sınavı süre tutarak çöz</h3>
+            <p>
+              Soru kitapçığını yeni sekmede aç, işaretlemelerini uygulamadaki optik forma gir.{" "}
+              {officialCounts.graded} tam sınavın resmî cevap anahtarı okundu; net sonucun 4 yanlış 1 doğruyu
+              götürecek biçimde hesaplanır.
+            </p>
+          </div>
+          <div className="cta__actions">
+            <button type="button" className="btn btn--primary" onClick={() => navigate("official")}>
+              Arşivi aç
+            </button>
+          </div>
         </div>
       </section>
 

@@ -98,7 +98,6 @@ export interface Score {
   wrong: number;
   accuracy: number;
 }
-
 export function scoreOf(list: { id: string }[], progress: ProgressState): Score {
   let solved = 0;
   let correct = 0;
@@ -136,4 +135,73 @@ export function applyTheme(theme: Theme): void {
   } catch {
     /* yoksay */
   }
+}
+
+/* ---------- resmî sınav optik formu ---------- */
+
+export interface SectionScore {
+  correct: number;
+  wrong: number;
+  empty: number;
+}
+
+export interface ExamResult {
+  examId: string;
+  sayisal: SectionScore;
+  sozel: SectionScore;
+  /** Sayısal + sözel net (4 yanlış 1 doğruyu götürür) */
+  net: number;
+  at: number;
+}
+
+const EXAM_KEY = "ales-pratik:exams:v1";
+
+function loadExamResults(): Record<string, ExamResult> {
+  try {
+    const raw = localStorage.getItem(EXAM_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw) as Record<string, ExamResult>;
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+let examState: Record<string, ExamResult> = loadExamResults();
+const examListeners = new Set<() => void>();
+
+export function saveExamResult(result: ExamResult): void {
+  examState = { ...examState, [result.examId]: result };
+  try {
+    localStorage.setItem(EXAM_KEY, JSON.stringify(examState));
+  } catch {
+    /* yoksay */
+  }
+  examListeners.forEach((listener) => listener());
+}
+
+export function clearExamResult(examId: string): void {
+  if (!examState[examId]) return;
+  const next = { ...examState };
+  delete next[examId];
+  examState = next;
+  try {
+    localStorage.setItem(EXAM_KEY, JSON.stringify(examState));
+  } catch {
+    /* yoksay */
+  }
+  examListeners.forEach((listener) => listener());
+}
+
+export function useExamResults(): Record<string, ExamResult> {
+  return useSyncExternalStore(
+    (listener) => {
+      examListeners.add(listener);
+      return () => {
+        examListeners.delete(listener);
+      };
+    },
+    () => examState,
+    () => examState,
+  );
 }

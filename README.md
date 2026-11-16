@@ -23,7 +23,11 @@ adresinden açılır.
 - **Her sorunun kendi adresi var.** Çalışma ekranında gezinirken adres çubuğu o soruyu gösterir
   (`#/calis?q=2026-1-say-30`); bağlantıyı kaydedip sonra doğrudan aynı soruya dönebilirsin.
 - **Kitapçık bağlantısı** — resmî sorularda, sorunun alındığı ÖSYM temel soru kitapçığına (PDF) link
-  verilir; sınav kitapçıklarına ana sayfadaki dönem kartlarından da ulaşılır.
+  verilir; tüm kitapçıklara **Resmî Sınavlar** sayfasından ulaşılır.
+- **Resmî sınav arşivi** — ÖSYM'nin yayımladığı 67 ALES kitapçığı (35 tam sınav + 32 %10 kitapçık)
+  doğrudan ÖSYM'nin doküman sunucusuna bağlanır. 2019–2021 tam sınavlarında **optik form** vardır:
+  işaretlemelerini girersin, resmî cevap anahtarıyla karşılaştırılıp net hesaplanır (4 yanlış 1 doğruyu
+  götürür); sonuç tarayıcıda saklanır.
 - **Karanlık / aydınlık tema**, mobil uyumlu düzen, klavye kısayolları.
 - **Matematik dizgisi** — kesirler, kökler ve üslü ifadeler kitapçıktaki gibi üst üste dizilir (KaTeX).
 - **Veri güdümlü** — yeni soru eklemek için tek bir JSON dosyası düzenlenir; kod değişmez.
@@ -54,7 +58,9 @@ Diğer komutlar:
 npm run build      # üretim derlemesi (dist/)
 npm run preview    # derlenmiş sürümü yerelde aç
 npm run validate   # soru bankası JSON doğrulaması
-npm run check      # tip kontrolü + JSON doğrulaması
+npm run check      # tip kontrolü + JSON doğrulaması + KaTeX derleme kontrolü
+npm run check:tex  # tüm $...$ ifadelerini KaTeX ile derler
+npm run math       # düz metin matematiği TeX'e çevirir (-- --dry: rapor)
 ```
 
 ---
@@ -104,12 +110,14 @@ Kesir, kök, üs gibi ifadeler KaTeX ile dizilir. Soru metninde, seçeneklerde v
 - `$$...$$` → ayrı satır (blok) matematik: `$$\frac{-3x-1}{4} + \frac{2x+2}{3} = 1$$`
 
 ```json
-"stem": "$$\\\\frac{-3x-1}{4} + \\\\frac{2x+2}{3} + \\\\frac{x-3}{2} = 1$$\\n\\neşitliğini sağlayan $x$ kaçtır?"
+"stem": "$$\\frac{-3x-1}{4} + \\frac{2x+2}{3} + \\frac{x-3}{2} = 1$$\n\neşitliğini sağlayan $x$ kaçtır?"
 ```
 
-Dolar işareti kullanılmayan metin olduğu gibi yazılır; mevcut sorulardaki `²`, `√`, `·` gibi
-Unicode işaretler de çalışmaya devam eder. Liste görünümünde matematik düz metne indirgenir
-(`mathToPlain`).
+Kesirler satır içinde `\dfrac` ile tam boy, blok matematikte `\frac` ile dizilir; birimler
+`\mathrm{cm}^{2}` gibi dik yazılır. Dolar işareti kullanılmayan metin olduğu gibi yazılır. Mevcut
+sorulardaki düz metin matematik (`2^x`, `√48`, `·`, Unicode üst simgeler) `node
+scripts/convert-math.mjs` ile toplu olarak TeX'e çevrilmiştir; betik `$` içeren alanlara dokunmaz.
+Liste görünümünde matematik düz metne indirgenir (`mathToPlain`).
 
 | Alan | Açıklama |
 | --- | --- |
@@ -130,6 +138,17 @@ Yeni bir sınav dönemi eklendiğinde (örn. 2026 ALES/2) ana sayfadaki “Sına
 konu listeleri kendiliğinden güncellenir. O dönemin kitapçık PDF adresini
 `src/data/booklets.ts` dosyasına ekleyin; bağlantılar otomatik görünür.
 
+### Resmî sınav arşivi
+
+`src/data/officialExams.ts`, ÖSYM'nin yayımladığı tüm ALES kitapçıklarını (2006'dan bugüne) tutar:
+her kayıtta yıl, dönem, tür (`tam` / `yuzde10`) ve doğrudan `dokuman.osym.gov.tr` adresine giden
+bağlantılar bulunur. Cevap anahtarı aynı PDF'in sonunda yayımlanan 2019–2021 tam sınavlarında
+`answers` alanı doludur (50 sayısal + 50 sözel harf); optik form yalnızca bu sınavlarda görünür.
+
+Bağlantılar ÖSYM'nin duyuru sayfalarından derlenmiştir; uygulama PDF'leri barındırmaz veya
+kopyalamaz. Yeni bir sınav yayımlandığında `officialExams.ts` içine aynı yapıda bir kayıt eklemek
+yeterlidir.
+
 ### İçerik ve telif notu
 
 Depodaki 101 sorunun 100'ü, 2025–2026 ALES sınavlarının kapsamına ve zorluk düzeyine göre **özgün
@@ -139,9 +158,9 @@ işaretlidir.
 
 Kitapçık bağlantısı ilkesi: PDF bağlantısı yalnızca gerçekten o kitapçıkta yer alan sorularda
 gösterilir. Örnek sorularda bağlantı verilmez, çünkü o sorular ÖSYM kitapçıklarında bulunmaz; bu tür
-bir bağlantı kullanıcıyı yanıltır. Sınavların kitapçıklarına ana sayfadaki dönem kartlarından
+bir bağlantı kullanıcıyı yanıltır. Tüm sınav kitapçıklarına **Resmî Sınavlar** sayfasından
 erişilebilir. PDF'ler projede barındırılmaz, doğrudan ÖSYM'nin sunucusundan açılır; resmî soruların
-telif koşullarını kontrol etmek yayıncının sorumluluğundadır.
+telif koşullarını kontrol etmek yayıncının sorumluluğundadır. Uygulama ÖSYM ile bağlantılı değildir.
 
 ---
 
@@ -200,6 +219,8 @@ ALES-Pratik/
 ├─ firebase.json              # alternatif Firebase Hosting yapılandırması
 ├─ .github/workflows/deploy.yml
 ├─ scripts/validate-questions.mjs
+├─ scripts/convert-math.mjs    # düz metin → TeX dönüştürücü
+├─ scripts/check-tex.mjs       # KaTeX derleme kontrolü
 └─ src/
    ├─ main.tsx / App.tsx      # giriş noktası ve sayfa yönlendirmesi
    ├─ styles.css              # tema değişkenleri ve tüm bileşen stilleri
@@ -207,19 +228,21 @@ ALES-Pratik/
    ├─ data/
    │  ├─ questions.json       # ← soru bankası (tek düzenlenecek dosya)
    │  ├─ booklets.ts          # sınav dönemi → resmî kitapçık PDF adresi
+   │  ├─ officialExams.ts     # 67 ÖSYM kitapçığı + cevap anahtarları
    │  └─ index.ts             # sınav/konu türetimi, arama, düz metin yardımcıları
    ├─ lib/
-   │  ├─ router.ts            # hash tabanlı yönlendirme (#/calis, #/sorular…)
-   │  └─ store.ts             # localStorage ilerleme + tema
+   │  ├─ router.ts            # hash tabanlı yönlendirme (#/calis, #/sorular, #/resmi)
+   │  └─ store.ts             # localStorage ilerleme, optik form sonuçları, tema
    ├─ components/
    │  ├─ Layout.tsx           # üst menü, tema düğmesi, alt bilgi
    │  ├─ MetaChips.tsx        # sınav/bölüm/konu etiketleri + kitapçık bağlantısı
    │  ├─ MathText.tsx         # $...$ / $$...$$ matematik dizgisi (KaTeX)
    │  └─ QuestionView.tsx     # soru kartı, seçenekler, cevap + çözüm panelleri
    └─ pages/
-      ├─ Home.tsx             # tanıtım, sınav dönemleri, konular
+      ├─ Home.tsx             # tanıtım, sınav dönemleri, konular, arşiv çağrısı
       ├─ Practice.tsx         # çalışma ekranı, test modları, adres güncellemesi
-      └─ Bank.tsx             # filtrelenebilir soru listesi
+      ├─ Bank.tsx             # filtrelenebilir soru listesi
+      └─ Official.tsx         # resmî arşiv ve optik form
 ```
 
 ## Teknoloji

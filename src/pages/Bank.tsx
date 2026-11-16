@@ -197,9 +197,9 @@ export default function Bank({ params }: { params: URLSearchParams }) {
         <p className="notice__small">
           Bu nedenle örnek sorularda kitapçık bağlantısı gösterilmez; yanlış yönlendirmemek için yalnızca
           gerçekten o kitapçıktan alınmış sorularda (<code>official: true</code>, istenirse{" "}
-          <code>pdfPage</code> ile sayfa numarası) bağlantı görünür. Kitapçıkların kendisine ana sayfadaki
-          sınav dönemi kartlarındaki “Kitapçık ↗” bağlantısından ulaşabilirsin; PDF'ler projede
-          barındırılmaz, doğrudan ÖSYM'nin sunucusundan açılır.
+          <code>pdfPage</code> ile sayfa numarası) bağlantı görünür. Kitapçıkların kendisine{" "}
+          <a href="#/resmi">resmî sınav arşivinden</a> ulaşabilirsin; PDF'ler projede barındırılmaz,
+          doğrudan ÖSYM'nin sunucusundan açılır.
         </p>
         <p className="notice__small">
           Her sorunun kendi adresi vardır: bir soruyu açtığında adres çubuğundaki bağlantı o soruyu

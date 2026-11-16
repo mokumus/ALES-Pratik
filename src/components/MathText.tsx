@@ -74,9 +74,10 @@ export default function MathText({ text, className }: { text: string; className?
       .map((part, i) => {
         if (part.kind !== "text") return part;
         let value = part.value;
-        // Matematik bloğunun kendi boşluğu var; etrafındaki fazla satır sonlarını at.
-        if (raw[i - 1] && raw[i - 1].kind !== "text") value = value.replace(/^\n+/, "");
-        if (raw[i + 1] && raw[i + 1].kind !== "text") value = value.replace(/\n+$/, "");
+        // Yalnızca blok matematiğin kendi boşluğu vardır; satır içi matematikte
+        // satır sonları korunur.
+        if (raw[i - 1]?.kind === "block") value = value.replace(/^\n+/, "");
+        if (raw[i + 1]?.kind === "block") value = value.replace(/\n+$/, "");
         return { kind: "text" as const, value };
       })
       .filter((part) => part.kind !== "text" || part.value.length > 0);

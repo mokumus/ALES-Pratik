@@ -18,7 +18,7 @@
       "27"
     ],
     "answer": 2,
-    "solution": "Ardışık üç tek sayıyı ortadaki sayı x olacak biçimde (x − 2), x, (x + 2) diye yazalım.\n\nToplam: (x − 2) + x + (x + 2) = 3x = 63 → x = 21 bulunur.\n\nEn büyük sayı x + 2 = 21 + 2 = 23'tür.\n\nKontrol: 19 + 21 + 23 = 63."
+    "solution": "Ardışık üç tek sayıyı ortadaki sayı $x$ olacak biçimde $(x - 2), x, (x + 2)$ diye yazalım.\n\nToplam: $(x - 2) + x + (x + 2) = 3x = 63$ → $x = 21$ bulunur.\n\nEn büyük sayı $x + 2 = 21 + 2 = 23$'tür.\n\nKontrol: $19 + 21 + 23 = 63$."
   },
   {
     "id": "2026-1-say-02",
@@ -30,7 +30,7 @@
     "no": 2,
     "difficulty": "orta",
     "official": false,
-    "stem": "x ve y birer doğal sayı olmak üzere,\n\n3x + 5y = 47\n\neşitliği sağlanmaktadır.\n\nBuna göre x + y toplamı en çok kaçtır?",
+    "stem": "$x$ ve $y$ birer doğal sayı olmak üzere,\n\n$$3x + 5y = 47$$\n\neşitliği sağlanmaktadır.\n\nBuna göre $x + y$ toplamı en çok kaçtır?",
     "options": [
       "13",
       "14",
@@ -39,7 +39,7 @@
       "17"
     ],
     "answer": 2,
-    "solution": "Toplamı büyütmek için katsayısı büyük olan değişkeni (y) olabildiğince küçük seçmeliyiz.\n\n3x + 5y = 47 eşitliğinde 3x'in 3'ün katı olması gerekir. 47 − 5y ≡ 0 (mod 3) → 2 − 2y ≡ 0 → y ≡ 1 (mod 3).\n\ny = 1 için 3x = 42 → x = 14 → x + y = 15\ny = 4 için 3x = 27 → x = 9 → x + y = 13\ny = 7 için 3x = 12 → x = 4 → x + y = 11\n\nEn büyük toplam 15'tir."
+    "solution": "Toplamı büyütmek için katsayısı büyük olan değişkeni ($y$) olabildiğince küçük seçmeliyiz.\n\n$3x + 5y = 47$ eşitliğinde $3x$'in 3'ün katı olması gerekir. $47 - 5y \\equiv 0$ (mod 3) → $2 - 2y \\equiv 0$ → $y \\equiv 1$ (mod 3).\n\n$y = 1$ için $3x = 42$ → $x = 14$ → $x + y = 15$\n$y = 4$ için $3x = 27$ → $x = 9$ → $x + y = 13$\n$y = 7$ için $3x = 12$ → $x = 4$ → $x + y = 11$\n\nEn büyük toplam 15'tir."
   },
   {
     "id": "2026-1-say-03",
@@ -60,7 +60,7 @@
       "16"
     ],
     "answer": 2,
-    "solution": "Sayıya x diyelim.\n\n3x + 5 = 2x + 17\n3x − 2x = 17 − 5\nx = 12\n\nKontrol: 3·12 + 5 = 41 ve 2·12 + 17 = 41. Eşitlik sağlanır."
+    "solution": "Sayıya $x$ diyelim.\n\n$$3x + 5 = 2x + 17$$\n$$3x - 2x = 17 - 5$$\n$$x = 12$$\n\nKontrol: $3\\cdot 12 + 5 = 41$ ve $2\\cdot 12 + 17 = 41$. Eşitlik sağlanır."
   },
   {
     "id": "2026-1-say-04",
@@ -72,16 +72,16 @@
     "no": 4,
     "difficulty": "orta",
     "official": false,
-    "stem": "a/b = 2/3 ve b/c = 4/5\n\nolduğuna göre a/c oranı kaçtır?",
+    "stem": "$\\dfrac{a}{b} = \\dfrac{2}{3}$ ve $\\dfrac{b}{c} = \\dfrac{4}{5}$\n\nolduğuna göre $\\dfrac{a}{c}$ oranı kaçtır?",
     "options": [
-      "8/15",
-      "2/5",
-      "1/2",
-      "3/5",
-      "15/8"
+      "$\\dfrac{8}{15}$",
+      "$\\dfrac{2}{5}$",
+      "$\\dfrac{1}{2}$",
+      "$\\dfrac{3}{5}$",
+      "$\\dfrac{15}{8}$"
     ],
     "answer": 0,
-    "solution": "İki oranı birleştirmek için ortak olan b'yi eşitleyelim.\n\na/b = 2/3 = 8/12 ve b/c = 4/5 = 12/15 (b her iki oranda 12 oldu).\n\nBuna göre a : b : c = 8 : 12 : 15 olur.\n\na/c = 8/15."
+    "solution": "İki oranı birleştirmek için ortak olan $b$'yi eşitleyelim.\n\n$\\dfrac{a}{b} = \\dfrac{2}{3} = \\dfrac{8}{12}$ ve $\\dfrac{b}{c} = \\dfrac{4}{5} = \\dfrac{12}{15}$($b$ her iki oranda 12 oldu).\n\nBuna göre $a$ : $b$ : $c = 8$ : 12 : 15 olur.\n\n$\\dfrac{a}{c} = \\dfrac{8}{15}$."
   },
   {
     "id": "2026-1-say-05",
@@ -93,7 +93,7 @@
     "no": 5,
     "difficulty": "orta",
     "official": false,
-    "stem": "x − 1/x = 4\n\nolduğuna göre x² + 1/x² ifadesinin değeri kaçtır?",
+    "stem": "$$x - \\frac{1}{x} = 4$$\n\nolduğuna göre $x^{2} + \\dfrac{1}{x^{2}}$ ifadesinin değeri kaçtır?",
     "options": [
       "14",
       "16",
@@ -102,7 +102,7 @@
       "22"
     ],
     "answer": 2,
-    "solution": "Verilen eşitliğin her iki tarafının karesini alalım:\n\n(x − 1/x)² = 4²\nx² − 2·x·(1/x) + 1/x² = 16\nx² − 2 + 1/x² = 16\nx² + 1/x² = 18"
+    "solution": "Verilen eşitliğin her iki tarafının karesini alalım:\n\n$$(x - \\frac{1}{x})^{2} = 4^{2}$$\n$$x^{2} - 2\\cdot x\\cdot (\\frac{1}{x}) + \\frac{1}{x^{2}} = 16$$\n$$x^{2} - 2 + \\frac{1}{x^{2}} = 16$$\n$$x^{2} + \\frac{1}{x^{2}} = 18$$"
   },
   {
     "id": "2026-1-say-06",
@@ -114,7 +114,7 @@
     "no": 6,
     "difficulty": "kolay",
     "official": false,
-    "stem": "2^x = 3\n\nolduğuna göre 4^(x+1) ifadesinin değeri kaçtır?",
+    "stem": "$$2^{x} = 3$$\n\nolduğuna göre $4^{x+1}$ ifadesinin değeri kaçtır?",
     "options": [
       "12",
       "18",
@@ -123,7 +123,7 @@
       "81"
     ],
     "answer": 3,
-    "solution": "4^(x+1) = 4^x · 4^1 = (2²)^x · 4 = (2^x)² · 4\n\n2^x = 3 olduğundan (2^x)² = 9 olur.\n\n4^(x+1) = 9 · 4 = 36"
+    "solution": "$$4^{x+1} = 4^{x} \\cdot 4^{1} = (2^{2})^{x} \\cdot 4 = (2^{x})^{2} \\cdot 4$$\n\n$2^{x} = 3$ olduğundan $(2^{x})^{2} = 9$ olur.\n\n$$4^{x+1} = 9 \\cdot 4 = 36$$"
   },
   {
     "id": "2026-1-say-07",
@@ -135,16 +135,16 @@
     "no": 7,
     "difficulty": "kolay",
     "official": false,
-    "stem": "√48 + √27 − √12\n\nifadesinin en basit biçimi aşağıdakilerden hangisidir?",
+    "stem": "$$\\sqrt{48} + \\sqrt{27} - \\sqrt{12}$$\n\nifadesinin en basit biçimi aşağıdakilerden hangisidir?",
     "options": [
-      "3√3",
-      "4√3",
-      "5√3",
-      "6√3",
-      "7√3"
+      "$3\\sqrt{3}$",
+      "$4\\sqrt{3}$",
+      "$5\\sqrt{3}$",
+      "$6\\sqrt{3}$",
+      "$7\\sqrt{3}$"
     ],
     "answer": 2,
-    "solution": "Köklerin içindeki tam kare çarpanları dışarı çıkaralım:\n\n√48 = √(16·3) = 4√3\n√27 = √(9·3) = 3√3\n√12 = √(4·3) = 2√3\n\n4√3 + 3√3 − 2√3 = (4 + 3 − 2)√3 = 5√3"
+    "solution": "Köklerin içindeki tam kare çarpanları dışarı çıkaralım:\n\n$$\\sqrt{48} = \\sqrt{16\\cdot 3} = 4\\sqrt{3}$$\n$$\\sqrt{27} = \\sqrt{9\\cdot 3} = 3\\sqrt{3}$$\n$$\\sqrt{12} = \\sqrt{4\\cdot 3} = 2\\sqrt{3}$$\n\n$$4\\sqrt{3} + 3\\sqrt{3} - 2\\sqrt{3} = (4 + 3 - 2)\\sqrt{3} = 5\\sqrt{3}$$"
   },
   {
     "id": "2026-1-say-30",
@@ -187,7 +187,7 @@
       "%20 azalır"
     ],
     "answer": 2,
-    "solution": "İlk fiyata 100 TL diyelim.\n\n%25 artış: 100 · 1,25 = 125 TL\n%20 indirim: 125 · 0,80 = 100 TL\n\nFiyat başlangıçtaki değerine döner; yani değişmez.\n\nGenel kural: 1,25 · 0,80 = 1 olduğu için sonuç değişmez."
+    "solution": "İlk fiyata 100 TL diyelim.\n\n%25 artış: $100 \\cdot 1{,}25 = 125$ TL\n%20 indirim: $125 \\cdot 0{,}80 = 100$ TL\n\nFiyat başlangıçtaki değerine döner; yani değişmez.\n\nGenel kural: $1{,}25 \\cdot 0{,}80 = 1$ olduğu için sonuç değişmez."
   },
   {
     "id": "2026-1-say-09",
@@ -208,7 +208,7 @@
       "405"
     ],
     "answer": 2,
-    "solution": "Önce maliyeti bulalım. Satış fiyatı, maliyetin %125'idir:\n\nMaliyet · 1,25 = 450 → Maliyet = 450 / 1,25 = 360 TL\n\n%10 kârla satış fiyatı: 360 · 1,10 = 396 TL"
+    "solution": "Önce maliyeti bulalım. Satış fiyatı, maliyetin %125'idir:\n\nMaliyet ·$1{,}25 = 450$ → Maliyet =$\\dfrac{450}{1},25 = 360$ TL\n\n%10 kârla satış fiyatı: $360 \\cdot 1{,}10 = 396$ TL"
   },
   {
     "id": "2026-1-say-10",
@@ -222,14 +222,14 @@
     "official": false,
     "stem": "A işçisi bir işi tek başına 12 günde, B işçisi aynı işi tek başına 18 günde bitirmektedir.\n\nİkisi birlikte 4 gün çalıştığında işin kaçta kaçı bitmiş olur?",
     "options": [
-      "1/2",
-      "4/9",
-      "5/9",
-      "2/3",
-      "7/9"
+      "$\\dfrac{1}{2}$",
+      "$\\dfrac{4}{9}$",
+      "$\\dfrac{5}{9}$",
+      "$\\dfrac{2}{3}$",
+      "$\\dfrac{7}{9}$"
     ],
     "answer": 2,
-    "solution": "Bir günde yapılan iş miktarları:\n\nA: 1/12, B: 1/18\nBirlikte bir günde: 1/12 + 1/18 = 3/36 + 2/36 = 5/36\n\n4 günde: 4 · (5/36) = 20/36 = 5/9\n\nİşin 5/9'u bitmiştir."
+    "solution": "Bir günde yapılan iş miktarları:\n\n$$A: \\frac{1}{12}, B: \\frac{1}{18}$$\nBirlikte bir günde: $\\dfrac{1}{12} + \\dfrac{1}{18} = \\dfrac{3}{36} + \\dfrac{2}{36} = \\dfrac{5}{36}$\n\n4 günde: $4 \\cdot (\\dfrac{5}{36}) = \\dfrac{20}{36} = \\dfrac{5}{9}$\n\nİşin $\\dfrac{5}{9}$'u bitmiştir."
   },
   {
     "id": "2026-1-say-11",
@@ -250,7 +250,7 @@
       "70"
     ],
     "answer": 2,
-    "solution": "Karşılaşma süresinde alınan yolların toplamı 420 km'dir:\n\n(v₁ + v₂) · 3 = 420 → v₁ + v₂ = 140\n\nHız farkı: v₁ − v₂ = 20\n\nİki denklemden: v₁ = 80, v₂ = 60\n\nYavaş olan aracın hızı 60 km/sa'tir."
+    "solution": "Karşılaşma süresinde alınan yolların toplamı 420 km'dir:\n\n(v₁ + v₂) ·$3 = 420$ → v₁ + v₂ = 140\n\nHız farkı: v₁ − v₂ = 20\n\nİki denklemden: v₁ = 80, v₂ = 60\n\nYavaş olan aracın hızı 60 km/sa'tir."
   },
   {
     "id": "2026-1-say-12",
@@ -271,7 +271,7 @@
       "40"
     ],
     "answer": 3,
-    "solution": "İlk karışımdaki tuz miktarı: 40 · 0,20 = 8 kg\n\nEklenen tuzla birlikte:\nTuz = 8 + 10 = 18 kg\nToplam karışım = 40 + 10 = 50 kg\n\nYeni tuz oranı = 18/50 = 36/100 = %36"
+    "solution": "İlk karışımdaki tuz miktarı: $40 \\cdot 0{,}20 = 8$ kg\n\nEklenen tuzla birlikte:\nTuz =$8 + 10 = 18$ kg\nToplam karışım =$40 + 10 = 50$ kg\n\nYeni tuz oranı =$\\dfrac{18}{50} = \\dfrac{36}{100} = \\%36$"
   },
   {
     "id": "2026-1-say-13",
@@ -292,7 +292,7 @@
       "24"
     ],
     "answer": 2,
-    "solution": "x yıl sonra:\n\n42 + x = 2 · (12 + x)\n42 + x = 24 + 2x\n42 − 24 = x\nx = 18\n\nKontrol: 18 yıl sonra baba 60, oğlu 30 yaşında olur; 60 = 2 · 30."
+    "solution": "$x$ yıl sonra:\n\n$$42 + x = 2 \\cdot (12 + x)$$\n$$42 + x = 24 + 2x$$\n$$42 - 24 = x$$\n$$x = 18$$\n\nKontrol: 18 yıl sonra baba 60, oğlu 30 yaşında olur; $60 = 2 \\cdot 30$."
   },
   {
     "id": "2026-1-say-14",
@@ -313,7 +313,7 @@
       "100"
     ],
     "answer": 2,
-    "solution": "Açılar 2k, 3k ve 4k olsun. Üçgenin iç açıları toplamı 180°'dir:\n\n2k + 3k + 4k = 180 → 9k = 180 → k = 20\n\nAçılar: 40°, 60°, 80°\n\nEn büyük açı 80°'dir."
+    "solution": "Açılar $2k, 3k$ ve $4k$ olsun. Üçgenin iç açıları toplamı $180^{\\circ}$'dir:\n\n$2k + 3k + 4k = 180$ → $9k = 180$ → $k = 20$\n\nAçılar: $40^{\\circ}, 60^{\\circ}, 80^{\\circ}$\n\nEn büyük açı $80^{\\circ}$'dir."
   },
   {
     "id": "2026-1-say-15",
@@ -334,7 +334,7 @@
       "24"
     ],
     "answer": 2,
-    "solution": "Sayıyı asal çarpanlarına ayıralım:\n\n180 = 2² · 3² · 5¹\n\nPozitif bölen sayısı, asal çarpanların üslerinin birer fazlasının çarpımıdır:\n\n(2 + 1) · (2 + 1) · (1 + 1) = 3 · 3 · 2 = 18"
+    "solution": "Sayıyı asal çarpanlarına ayıralım:\n\n$$180 = 2^{2} \\cdot 3^{2} \\cdot 5^{1}$$\n\nPozitif bölen sayısı, asal çarpanların üslerinin birer fazlasının çarpımıdır:\n\n$$(2 + 1) \\cdot (2 + 1) \\cdot (1 + 1) = 3 \\cdot 3 \\cdot 2 = 18$$"
   },
   {
     "id": "2026-1-say-16",
@@ -355,7 +355,7 @@
       "23"
     ],
     "answer": 3,
-    "solution": "187'yi 12'ye bölelim:\n\n12 · 15 = 180 ve 187 − 180 = 7\n\nYani 187 = 12 · 15 + 7; bölüm 15, kalan 7'dir.\n\nToplam: 15 + 7 = 22"
+    "solution": "187'yi 12'ye bölelim:\n\n$12 \\cdot 15 = 180$ ve $187 - 180 = 7$\n\nYani $187 = 12 \\cdot 15 + 7$; bölüm 15, kalan 7'dir.\n\nToplam: $15 + 7 = 22$"
   },
   {
     "id": "2026-1-say-17",
@@ -367,7 +367,7 @@
     "no": 17,
     "difficulty": "kolay",
     "official": false,
-    "stem": "0,4 + 0,04 + 0,004\n\nişleminin sonucu kaçtır?",
+    "stem": "$0{,}4 + 0{,}04 + 0{,}004$\n\nişleminin sonucu kaçtır?",
     "options": [
       "0,084",
       "0,44",
@@ -388,7 +388,7 @@
     "no": 18,
     "difficulty": "kolay",
     "official": false,
-    "stem": "−3 < x ≤ 4\n\nkoşulunu sağlayan x tam sayılarının toplamı kaçtır?",
+    "stem": "$-3 < x \\le 4$\n\nkoşulunu sağlayan $x$ tam sayılarının toplamı kaçtır?",
     "options": [
       "3",
       "5",
@@ -397,7 +397,7 @@
       "11"
     ],
     "answer": 2,
-    "solution": "Verilen aralıkta −3 dahil değil, 4 dahildir:\n\nx ∈ {−2, −1, 0, 1, 2, 3, 4}\n\nToplam: (−2 −1) + 0 + (1 + 2 + 3 + 4) = −3 + 10 = 7"
+    "solution": "Verilen aralıkta $-3$ dahil değil, 4 dahildir:\n\n$x \\in {-2, -1, 0, 1, 2, 3, 4}$\n\nToplam: $(-2 -1) + 0 + (1 + 2 + 3 + 4) = -3 + 10 = 7$"
   },
   {
     "id": "2026-1-say-19",
@@ -409,7 +409,7 @@
     "no": 19,
     "difficulty": "kolay",
     "official": false,
-    "stem": "Gerçek sayılar kümesinde tanımlı f fonksiyonu,\n\nf(x) = 3x − 2\n\nbiçiminde veriliyor.\n\nf(a + 1) = 10 olduğuna göre a kaçtır?",
+    "stem": "Gerçek sayılar kümesinde tanımlı $f$ fonksiyonu,\n\n$$f(x) = 3x - 2$$\n\nbiçiminde veriliyor.\n\n$f(a + 1) = 10$ olduğuna göre $a$ kaçtır?",
     "options": [
       "2",
       "3",
@@ -418,7 +418,7 @@
       "6"
     ],
     "answer": 1,
-    "solution": "Fonksiyonda x yerine (a + 1) yazalım:\n\nf(a + 1) = 3(a + 1) − 2 = 3a + 3 − 2 = 3a + 1\n\n3a + 1 = 10 → 3a = 9 → a = 3\n\nKontrol: f(4) = 3 · 4 − 2 = 10 ✓"
+    "solution": "Fonksiyonda $x$ yerine $(a + 1)$ yazalım:\n\n$$f(a + 1) = 3(a + 1) - 2 = 3a + 3 - 2 = 3a + 1$$\n\n$3a + 1 = 10$ → $3a = 9$ → $a = 3$\n\nKontrol: $f(4) = 3 \\cdot 4 - 2 = 10$ ✓"
   },
   {
     "id": "2026-1-say-20",
@@ -439,7 +439,7 @@
       "10"
     ],
     "answer": 3,
-    "solution": "En az bir dil bilen öğrenci sayısı: 30 − 6 = 24\n\nKümelerin birleşim formülü: s(İ ∪ A) = s(İ) + s(A) − s(İ ∩ A)\n\n24 = 18 + 15 − x → 24 = 33 − x → x = 9\n\nHer iki dili de bilen 9 öğrenci vardır."
+    "solution": "En az bir dil bilen öğrenci sayısı: $30 - 6 = 24$\n\nKümelerin birleşim formülü: s(İ ∪ A) = s(İ) + s(A) − s(İ ∩ A)\n\n$24 = 18 + 15 - x$ → $24 = 33 - x$ → $x = 9$\n\nHer iki dili de bilen 9 öğrenci vardır."
   },
   {
     "id": "2026-1-say-21",
@@ -460,7 +460,7 @@
       "5400"
     ],
     "answer": 3,
-    "solution": "Basit faiz: Faiz = Anapara · faiz oranı · süre\n\nFaiz = 4000 · 0,15 · 2 = 1200 TL\n\nVade sonundaki toplam: 4000 + 1200 = 5200 TL"
+    "solution": "Basit faiz: Faiz = Anapara · faiz oranı · süre\n\nFaiz =$4000 \\cdot 0{,}15 \\cdot 2 = 1200$ TL\n\nVade sonundaki toplam: $4000 + 1200 = 5200$ TL"
   },
   {
     "id": "2026-1-say-22",
@@ -481,7 +481,7 @@
       "40"
     ],
     "answer": 3,
-    "solution": "İlk üçgenin çevresi: 6 + 8 + 10 = 24 cm\n\nBenzer üçgenlerde çevreler, kenarlar arasındaki oranla aynı oranda büyür. En kısa kenarların oranı: 9/6 = 3/2\n\nYeni çevre: 24 · 3/2 = 36 cm\n\nKontrol: kenarlar 9, 12, 15 → 9 + 12 + 15 = 36 ✓"
+    "solution": "İlk üçgenin çevresi: $6 + 8 + 10 = 24$ cm\n\nBenzer üçgenlerde çevreler, kenarlar arasındaki oranla aynı oranda büyür. En kısa kenarların oranı: $\\dfrac{9}{6} = \\dfrac{3}{2}$\n\nYeni çevre: $24 \\cdot \\dfrac{3}{2} = 36$ cm\n\nKontrol: kenarlar 9, 12, 15 → $9 + 12 + 15 = 36$ ✓"
   },
   {
     "id": "2026-1-say-23",
@@ -493,7 +493,7 @@
     "no": 23,
     "difficulty": "kolay",
     "official": false,
-    "stem": "Taban uzunluğu 12 cm, bu tabana ait yüksekliği 8 cm olan paralelkenarın alanı kaç cm²'dir?",
+    "stem": "Taban uzunluğu 12 cm, bu tabana ait yüksekliği 8 cm olan paralelkenarın alanı kaç $\\mathrm{cm}^{2}$'dir?",
     "options": [
       "48",
       "72",
@@ -502,7 +502,7 @@
       "120"
     ],
     "answer": 3,
-    "solution": "Paralelkenarın alanı = taban · yükseklik\n\nAlan = 12 · 8 = 96 cm²"
+    "solution": "Paralelkenarın alanı = taban · yükseklik\n\nAlan =$12 \\cdot 8 = 96 \\mathrm{cm}^{2}$"
   },
   {
     "id": "2026-1-say-24",
@@ -523,7 +523,7 @@
       "8"
     ],
     "answer": 2,
-    "solution": "Sıra sayısı s olsun.\n\nİkişerli oturma: Öğrenci sayısı = 2s + 3\nÜçerli oturma: 1 sıra boş kaldığına göre (s − 1) sıra kullanılır → Öğrenci sayısı = 3(s − 1)\n\n2s + 3 = 3s − 3 → s = 6\n\nKontrol: 15 öğrenci vardır; üçerli oturunca 5 sıra kullanılır, 1 sıra boş kalır ✓"
+    "solution": "Sıra sayısı s olsun.\n\nİkişerli oturma: Öğrenci sayısı =$2s + 3$\nÜçerli oturma: 1 sıra boş kaldığına göre $(s - 1)$ sıra kullanılır → Öğrenci sayısı =$3(s - 1)$\n\n$2s + 3 = 3s - 3$ → $s = 6$\n\nKontrol: 15 öğrenci vardır; üçerli oturunca 5 sıra kullanılır, 1 sıra boş kalır ✓"
   },
   {
     "id": "2026-1-say-25",
@@ -537,14 +537,14 @@
     "official": false,
     "stem": "Bir zar art arda iki kez atılıyor.\n\nBuna göre üst yüze gelen sayıların toplamının 9 olma olasılığı kaçtır?",
     "options": [
-      "1/6",
-      "1/9",
-      "1/12",
-      "5/36",
-      "1/18"
+      "$\\dfrac{1}{6}$",
+      "$\\dfrac{1}{9}$",
+      "$\\dfrac{1}{12}$",
+      "$\\dfrac{5}{36}$",
+      "$\\dfrac{1}{18}$"
     ],
     "answer": 1,
-    "solution": "İki zar atışında 6 · 6 = 36 farklı sonuç vardır.\n\nToplamı 9 yapan durumlar: (3, 6), (4, 5), (5, 4), (6, 3) → 4 durum\n\nOlasılık = 4/36 = 1/9"
+    "solution": "İki zar atışında $6 \\cdot 6 = 36$ farklı sonuç vardır.\n\nToplamı 9 yapan durumlar: (3, 6), (4, 5), (5, 4), (6, 3) → 4 durum\n\nOlasılık =$\\dfrac{4}{36} = \\dfrac{1}{9}$"
   },
   {
     "id": "2026-1-say-26",
@@ -556,7 +556,7 @@
     "no": 26,
     "difficulty": "kolay",
     "official": false,
-    "stem": "√0,25 + √0,16\n\nişleminin sonucu kaçtır?",
+    "stem": "$$\\sqrt{0{,}25} + \\sqrt{0{,}16}$$\n\nişleminin sonucu kaçtır?",
     "options": [
       "0,5",
       "0,7",
@@ -565,7 +565,7 @@
       "1,1"
     ],
     "answer": 3,
-    "solution": "Karekök içindeki ondalık sayıları kesre çevirelim:\n\n√0,25 = √(25/100) = 5/10 = 0,5\n√0,16 = √(16/100) = 4/10 = 0,4\n\n0,5 + 0,4 = 0,9"
+    "solution": "Karekök içindeki ondalık sayıları kesre çevirelim:\n\n$$\\sqrt{0{,}25} = \\sqrt{\\frac{25}{100}} = \\frac{5}{10} = 0{,}5$$\n$$\\sqrt{0{,}16} = \\sqrt{\\frac{16}{100}} = \\frac{4}{10} = 0{,}4$$\n\n$$0{,}5 + 0{,}4 = 0{,}9$$"
   },
   {
     "id": "2026-1-say-27",
@@ -586,7 +586,7 @@
       "190"
     ],
     "answer": 2,
-    "solution": "İlk indirimden sonraki fiyat: 250 · 0,80 = 200 TL\n\nİkinci indirim uygulanan fiyat 200 TL'dir (etiket fiyatı değil):\n\n200 · 0,90 = 180 TL\n\nDikkat: İki indirim toplanmaz; her indirim bir önceki fiyat üzerinden hesaplanır."
+    "solution": "İlk indirimden sonraki fiyat: $250 \\cdot 0{,}80 = 200$ TL\n\nİkinci indirim uygulanan fiyat 200 TL'dir (etiket fiyatı değil):\n\n$200 \\cdot 0{,}90 = 180$ TL\n\nDikkat: İki indirim toplanmaz; her indirim bir önceki fiyat üzerinden hesaplanır."
   },
   {
     "id": "2026-1-say-28",
@@ -607,7 +607,7 @@
       "24"
     ],
     "answer": 4,
-    "solution": "Musluğun bir saatte doldurduğu kısım: 1/8\nTahliye borusunun bir saatte boşalttığı kısım: 1/12\n\nBirlikte bir saatte net dolan kısım:\n\n1/8 − 1/12 = 3/24 − 2/24 = 1/24\n\nHavuzun tamamı 24 saatte dolar."
+    "solution": "Musluğun bir saatte doldurduğu kısım: $\\dfrac{1}{8}$\nTahliye borusunun bir saatte boşalttığı kısım: $\\dfrac{1}{12}$\n\nBirlikte bir saatte net dolan kısım:\n\n$$\\frac{1}{8} - \\frac{1}{12} = \\frac{3}{24} - \\frac{2}{24} = \\frac{1}{24}$$\n\nHavuzun tamamı 24 saatte dolar."
   },
   {
     "id": "2026-1-say-29",
@@ -628,7 +628,7 @@
       "60"
     ],
     "answer": 3,
-    "solution": "Başlangıçtaki toplam yaş: 6 · 24 = 144\n\nKatılımdan sonra 8 kişinin toplam yaşı: 8 · 25 = 200\n\nKatılan iki kişinin yaşları toplamı: 200 − 144 = 56"
+    "solution": "Başlangıçtaki toplam yaş: $6 \\cdot 24 = 144$\n\nKatılımdan sonra 8 kişinin toplam yaşı: $8 \\cdot 25 = 200$\n\nKatılan iki kişinin yaşları toplamı: $200 - 144 = 56$"
   },
   {
     "id": "2026-1-soz-01",
@@ -770,7 +770,7 @@
     "options": [
       "Ağacın kökleri toprağın derinliklerine kadar inmişti.",
       "Bu sorunun kökünü bulmak için eski defterleri karıştırdı.",
-      "x² = 9 denkleminin kökleri 3 ve −3 sayılarıdır.",
+      "$x^{2} = 9$ denkleminin kökleri 3 ve $-3$ sayılarıdır.",
       "Kök boyası, halı dokumacılığında kullanılan doğal bir boyadır.",
       "Yeni aldığı fidanın kökü kurumuştu."
     ],
@@ -943,7 +943,7 @@
       "120"
     ],
     "answer": 2,
-    "solution": "Bir sayının 4 ile bölünebilmesi için son iki basamağının oluşturduğu sayı 4'ün katı olmalıdır.\n\n100 → son iki basamak 00 (4'ün katı) ancak rakamları birbirinden farklı değil (0 iki kez kullanılmış).\n102 → 02 = 2, 4'ün katı değil.\n104 → 04 = 4, 4'ün katı ve rakamları (1, 0, 4) birbirinden farklı.\n\nEn küçük sayı 104'tür."
+    "solution": "Bir sayının 4 ile bölünebilmesi için son iki basamağının oluşturduğu sayı 4'ün katı olmalıdır.\n\n100 → son iki basamak 00 (4'ün katı) ancak rakamları birbirinden farklı değil (0 iki kez kullanılmış).\n102 → $02 = 2, 4$'ün katı değil.\n104 → $04 = 4, 4$'ün katı ve rakamları (1, 0, 4) birbirinden farklı.\n\nEn küçük sayı 104'tür."
   },
   {
     "id": "2025-2-say-02",
@@ -964,7 +964,7 @@
       "300"
     ],
     "answer": 1,
-    "solution": "48 = 2⁴ · 3 ve 60 = 2² · 3 · 5\n\nEBOB: ortak asal çarpanların en küçük üsleri → 2² · 3 = 12\nEKOK: tüm asal çarpanların en büyük üsleri → 2⁴ · 3 · 5 = 240\n\nToplam: 12 + 240 = 252\n\nKısa yol: EBOB · EKOK = 48 · 60 = 2880 → 12 · 240 = 2880 ✓"
+    "solution": "$48 = 2^{4} \\cdot 3$ ve $60 = 2^{2} \\cdot 3 \\cdot 5$\n\nEBOB: ortak asal çarpanların en küçük üsleri → $2^{2} \\cdot 3 = 12$\nEKOK: tüm asal çarpanların en büyük üsleri → $2^{4} \\cdot 3 \\cdot 5 = 240$\n\nToplam: $12 + 240 = 252$\n\nKısa yol: EBOB · EKOK =$48 \\cdot 60 = 2880$ → $12 \\cdot 240 = 2880$ ✓"
   },
   {
     "id": "2025-2-say-03",
@@ -976,16 +976,16 @@
     "no": 3,
     "difficulty": "orta",
     "official": false,
-    "stem": "1 / (√5 − 2)\n\nifadesinin paydası rasyonelleştirildiğinde aşağıdakilerden hangisi elde edilir?",
+    "stem": "$$\\frac{1}{\\sqrt{5} - 2}$$\n\nifadesinin paydası rasyonelleştirildiğinde aşağıdakilerden hangisi elde edilir?",
     "options": [
-      "√5 − 2",
-      "√5 + 2",
-      "2√5 − 1",
-      "√5",
-      "5 − √2"
+      "$\\sqrt{5} - 2$",
+      "$\\sqrt{5} + 2$",
+      "$2\\sqrt{5} - 1$",
+      "$\\sqrt{5}$",
+      "$5 - \\sqrt{2}$"
     ],
     "answer": 1,
-    "solution": "Pay ve paydayı eşlenikle, yani (√5 + 2) ile çarpalım:\n\n1/(√5 − 2) = (√5 + 2) / [(√5 − 2)(√5 + 2)]\n\nPayda: (√5)² − 2² = 5 − 4 = 1\n\nSonuç: √5 + 2"
+    "solution": "Pay ve paydayı eşlenikle, yani $(\\sqrt{5} + 2)$ ile çarpalım:\n\n$$\\frac{1}{\\sqrt{5} - 2} = (\\sqrt{5} + 2) / [(\\sqrt{5} - 2)(\\sqrt{5} + 2)]$$\n\nPayda: $(\\sqrt{5})^{2} - 2^{2} = 5 - 4 = 1$\n\nSonuç: $\\sqrt{5} + 2$"
   },
   {
     "id": "2025-2-say-04",
@@ -997,7 +997,7 @@
     "no": 4,
     "difficulty": "orta",
     "official": false,
-    "stem": "x bir gerçek sayı olmak üzere,\n\n|x − 3| + |x + 2|\n\nifadesinin alabileceği en küçük değer kaçtır?",
+    "stem": "$x$ bir gerçek sayı olmak üzere,\n\n$|x - 3| + |x + 2|$\n\nifadesinin alabileceği en küçük değer kaçtır?",
     "options": [
       "1",
       "3",
@@ -1006,7 +1006,7 @@
       "9"
     ],
     "answer": 2,
-    "solution": "|x − 3|, x'in 3'e uzaklığını; |x + 2| = |x − (−2)| ise x'in −2'ye uzaklığını gösterir.\n\nİki uzaklığın toplamı, −2 ile 3 arasındaki her x değeri için bu iki nokta arasındaki uzaklığa eşittir:\n\n|3 − (−2)| = 5\n\nYani x ∈ [−2, 3] için ifade 5 değerini alır ve bu en küçük değerdir."
+    "solution": "$|x - 3|, x$'in 3'e uzaklığını; $|x + 2| = |x - (-2)|$ ise $x$'in $-2$'ye uzaklığını gösterir.\n\nİki uzaklığın toplamı, $-2$ ile 3 arasındaki her $x$ değeri için bu iki nokta arasındaki uzaklığa eşittir:\n\n$$|3 - (-2)| = 5$$\n\nYani $x \\in [-2, 3]$ için ifade 5 değerini alır ve bu en küçük değerdir."
   },
   {
     "id": "2025-2-say-05",
@@ -1018,7 +1018,7 @@
     "no": 5,
     "difficulty": "kolay",
     "official": false,
-    "stem": "Reel sayılar kümesinde ⊙ işlemi,\n\nx ⊙ y = 2x + y − 3\n\nbiçiminde tanımlanıyor.\n\nBuna göre 4 ⊙ 5 işleminin sonucu kaçtır?",
+    "stem": "Reel sayılar kümesinde $\\odot$ işlemi,\n\n$$x \\odot y = 2x + y - 3$$\n\nbiçiminde tanımlanıyor.\n\nBuna göre $4 \\odot 5$ işleminin sonucu kaçtır?",
     "options": [
       "8",
       "9",
@@ -1027,7 +1027,7 @@
       "12"
     ],
     "answer": 2,
-    "solution": "Tanımda x yerine 4, y yerine 5 yazalım:\n\n4 ⊙ 5 = 2·4 + 5 − 3 = 8 + 5 − 3 = 10"
+    "solution": "Tanımda $x$ yerine 4, $y$ yerine 5 yazalım:\n\n$$4 \\odot 5 = 2\\cdot 4 + 5 - 3 = 8 + 5 - 3 = 10$$"
   },
   {
     "id": "2025-2-say-06",
@@ -1048,7 +1048,7 @@
       "32"
     ],
     "answer": 3,
-    "solution": "Dört harf birbirinden farklı olduğu için diziliş sayısı 4! ile bulunur:\n\n4! = 4 · 3 · 2 · 1 = 24\n\nHarflerden biri tekrar etseydi tekrarlı permütasyon formülü kullanılacaktı."
+    "solution": "Dört harf birbirinden farklı olduğu için diziliş sayısı 4! ile bulunur:\n\n$$4! = 4 \\cdot 3 \\cdot 2 \\cdot 1 = 24$$\n\nHarflerden biri tekrar etseydi tekrarlı permütasyon formülü kullanılacaktı."
   },
   {
     "id": "2025-2-say-07",
@@ -1069,7 +1069,7 @@
       "20"
     ],
     "answer": 2,
-    "solution": "Seçimde sıra önemli olmadığı için kombinasyon kullanılır:\n\nC(5, 3) = 5! / (3! · 2!) = (5 · 4) / 2 = 10\n\nHer 3 kişilik komisyon, dışarıda kalan 2 kişiyle birebir eşleştiği için C(5, 2) = 10 sonucu da aynıdır."
+    "solution": "Seçimde sıra önemli olmadığı için kombinasyon kullanılır:\n\n$$C(5, 3) = 5! / (3! \\cdot 2!) = \\frac{5 \\cdot 4}{2} = 10$$\n\nHer 3 kişilik komisyon, dışarıda kalan 2 kişiyle birebir eşleştiği için $C(5, 2) = 10$ sonucu da aynıdır."
   },
   {
     "id": "2025-2-say-08",
@@ -1083,14 +1083,14 @@
     "official": false,
     "stem": "İçinde 4 kırmızı ve 6 mavi top bulunan bir torbadan rastgele 2 top çekiliyor.\n\nÇekilen iki topun da kırmızı olma olasılığı kaçtır?",
     "options": [
-      "1/5",
-      "2/15",
-      "4/25",
-      "1/3",
-      "3/10"
+      "$\\dfrac{1}{5}$",
+      "$\\dfrac{2}{15}$",
+      "$\\dfrac{4}{25}$",
+      "$\\dfrac{1}{3}$",
+      "$\\dfrac{3}{10}$"
     ],
     "answer": 1,
-    "solution": "Torbada toplam 10 top vardır. 10 toptan 2'sinin seçilme sayısı: C(10, 2) = 45\n\n4 kırmızı toptan 2'sinin seçilme sayısı: C(4, 2) = 6\n\nOlasılık = 6/45 = 2/15\n\nAlternatif: İlk topun kırmızı olma olasılığı 4/10, ikincisinin 3/9 → 4/10 · 3/9 = 12/90 = 2/15."
+    "solution": "Torbada toplam 10 top vardır. 10 toptan 2'sinin seçilme sayısı: $C(10, 2) = 45$\n\n4 kırmızı toptan 2'sinin seçilme sayısı: $C(4, 2) = 6$\n\nOlasılık =$\\dfrac{6}{45} = \\dfrac{2}{15}$\n\nAlternatif: İlk topun kırmızı olma olasılığı $\\dfrac{4}{10}$, ikincisinin $\\dfrac{3}{9}$ → $\\dfrac{4}{10} \\cdot \\dfrac{3}{9} = \\dfrac{12}{90} = \\dfrac{2}{15}$."
   },
   {
     "id": "2025-2-say-09",
@@ -1102,7 +1102,7 @@
     "no": 9,
     "difficulty": "kolay",
     "official": false,
-    "stem": "Kenar uzunlukları 2 ve 7 sayılarıyla doğru orantılı olan bir dikdörtgenin çevresi 36 cm'dir.\n\nBuna göre bu dikdörtgenin alanı kaç cm²'dir?",
+    "stem": "Kenar uzunlukları 2 ve 7 sayılarıyla doğru orantılı olan bir dikdörtgenin çevresi 36 cm'dir.\n\nBuna göre bu dikdörtgenin alanı kaç $\\mathrm{cm}^{2}$'dir?",
     "options": [
       "42",
       "48",
@@ -1111,7 +1111,7 @@
       "72"
     ],
     "answer": 2,
-    "solution": "Kenarlar 2k ve 7k olsun.\n\nÇevre = 2 · (2k + 7k) = 18k = 36 → k = 2\n\nKenarlar: 4 cm ve 14 cm\n\nAlan = 4 · 14 = 56 cm²"
+    "solution": "Kenarlar $2k$ ve $7k$ olsun.\n\nÇevre =$2 \\cdot (2k + 7k) = 18k = 36$ → $k = 2$\n\nKenarlar: 4 cm ve 14 cm\n\nAlan =$4 \\cdot 14 = 56 \\mathrm{cm}^{2}$"
   },
   {
     "id": "2025-2-say-10",
@@ -1132,7 +1132,7 @@
       "17"
     ],
     "answer": 2,
-    "solution": "Pisagor teoremi: hipotenüs² = 9² + 12² = 81 + 144 = 225\n\nHipotenüs = √225 = 15 cm\n\n(3-4-5 üçgeninin 3 katı olan 9-12-15 üçgeni.)"
+    "solution": "Pisagor teoremi: hipotenüs² =$9^{2} + 12^{2} = 81 + 144 = 225$\n\nHipotenüs =$\\sqrt{225} = 15$ cm\n\n(3-4-5 üçgeninin 3 katı olan $9-12-15$ üçgeni.)"
   },
   {
     "id": "2025-2-say-11",
@@ -1153,7 +1153,7 @@
       "44"
     ],
     "answer": 3,
-    "solution": "Sıra sayısı s, öğrenci sayısı Ö olsun.\n\nÜçerli oturma: Ö = 3s + 4\nDörderli oturma: 2 sıra boş kaldığına göre s − 2 sıra kullanılmıştır → Ö = 4(s − 2)\n\n3s + 4 = 4s − 8 → s = 12\n\nÖ = 3 · 12 + 4 = 40\n\nKontrol: 40 öğrenci 10 sıraya dörderli oturur, 12 − 10 = 2 sıra boş kalır."
+    "solution": "Sıra sayısı s, öğrenci sayısı Ö olsun.\n\nÜçerli oturma: Ö =$3s + 4$\nDörderli oturma: 2 sıra boş kaldığına göre $s - 2$ sıra kullanılmıştır → Ö =$4(s - 2)$\n\n$3s + 4 = 4s - 8$ → $s = 12$\n\nÖ =$3 \\cdot 12 + 4 = 40$\n\nKontrol: 40 öğrenci 10 sıraya dörderli oturur, $12 - 10 = 2$ sıra boş kalır."
   },
   {
     "id": "2025-2-say-12",
@@ -1186,7 +1186,7 @@
     "no": 13,
     "difficulty": "orta",
     "official": false,
-    "stem": "a + b = 7 ve a · b = 10\n\nolduğuna göre a²b + ab² ifadesinin değeri kaçtır?",
+    "stem": "$a + b = 7$ ve $a \\cdot b = 10$\n\nolduğuna göre $a^{2}b + ab^{2}$ ifadesinin değeri kaçtır?",
     "options": [
       "17",
       "50",
@@ -1195,7 +1195,7 @@
       "80"
     ],
     "answer": 3,
-    "solution": "İfadeyi ortak çarpan parantezine alalım:\n\na²b + ab² = ab(a + b)\n\nVerilen değerleri yerine koyalım:\n\nab(a + b) = 10 · 7 = 70\n\n(Not: a ve b 2 ile 5'tir; 4·5 + 2·25 = 20 + 50 = 70 ✓)"
+    "solution": "İfadeyi ortak çarpan parantezine alalım:\n\n$$a^{2}b + ab^{2} = ab(a + b)$$\n\nVerilen değerleri yerine koyalım:\n\n$$ab(a + b) = 10 \\cdot 7 = 70$$\n\n(Not: $a$ ve $b$ 2 ile 5'tir; $4\\cdot 5 + 2\\cdot 25 = 20 + 50 = 70$ ✓)"
   },
   {
     "id": "2025-2-say-14",
@@ -1207,7 +1207,7 @@
     "no": 14,
     "difficulty": "kolay",
     "official": false,
-    "stem": "3^(x+1) = 27 ve 2^(y−1) = 8\n\nolduğuna göre x + y kaçtır?",
+    "stem": "$3^{x+1} = 27$ ve $2^{y-1} = 8$\n\nolduğuna göre $x + y$ kaçtır?",
     "options": [
       "4",
       "5",
@@ -1216,7 +1216,7 @@
       "8"
     ],
     "answer": 2,
-    "solution": "27 = 3³ olduğundan:\n\n3^(x+1) = 3³ → x + 1 = 3 → x = 2\n\n8 = 2³ olduğundan:\n\n2^(y−1) = 2³ → y − 1 = 3 → y = 4\n\nx + y = 2 + 4 = 6"
+    "solution": "$27 = 3^{3}$ olduğundan:\n\n$3^{x+1} = 3^{3}$ → $x + 1 = 3$ → $x = 2$\n\n$8 = 2^{3}$ olduğundan:\n\n$2^{y-1} = 2^{3}$ → $y - 1 = 3$ → $y = 4$\n\n$$x + y = 2 + 4 = 6$$"
   },
   {
     "id": "2025-2-say-15",
@@ -1228,7 +1228,7 @@
     "no": 15,
     "difficulty": "orta",
     "official": false,
-    "stem": "Bir telin önce 1/3'ü, sonra kalan kısmının 1/4'ü kesiliyor.\n\nGeriye 12 metre tel kaldığına göre telin başlangıçtaki uzunluğu kaç metredir?",
+    "stem": "Bir telin önce $\\dfrac{1}{3}$'ü, sonra kalan kısmının $\\dfrac{1}{4}$'ü kesiliyor.\n\nGeriye 12 metre tel kaldığına göre telin başlangıçtaki uzunluğu kaç metredir?",
     "options": [
       "18",
       "20",
@@ -1237,7 +1237,7 @@
       "32"
     ],
     "answer": 2,
-    "solution": "Telin uzunluğu L olsun.\n\n1/3'ü kesilince kalan: L · (2/3)\nKalanın 1/4'ü kesilince geriye kalan: L · (2/3) · (3/4)\n\nL · (2/3) · (3/4) = L/2 = 12 → L = 24 metre\n\nKontrol: 8 m kesilir, 16 m kalır; 16'nın 1/4'ü olan 4 m daha kesilir, 12 m kalır ✓"
+    "solution": "Telin uzunluğu L olsun.\n\n$\\dfrac{1}{3}$'ü kesilince kalan: $L \\cdot (\\dfrac{2}{3})$\nKalanın $\\dfrac{1}{4}$'ü kesilince geriye kalan: $L \\cdot (\\dfrac{2}{3}) \\cdot (\\dfrac{3}{4})$\n\n$L \\cdot (\\dfrac{2}{3}) \\cdot (\\dfrac{3}{4}) = \\dfrac{L}{2} = 12$ → $L = 24$ metre\n\nKontrol: 8 $m$ kesilir, 16 $m$ kalır; 16'nın $\\dfrac{1}{4}$'ü olan 4 $m$ daha kesilir, 12 $m$ kalır ✓"
   },
   {
     "id": "2025-2-say-16",
@@ -1258,7 +1258,7 @@
       "8"
     ],
     "answer": 2,
-    "solution": "Kızın bugünkü yaşı k olsun; annenin yaşı 3k'dır.\n\n5 yıl sonra:\n\n3k + 5 = 2(k + 5)\n3k + 5 = 2k + 10\nk = 5\n\nKontrol: Anne 15, kız 5 yaşında; 5 yıl sonra 20 = 2 · 10 ✓"
+    "solution": "Kızın bugünkü yaşı k olsun; annenin yaşı $3k$'dır.\n\n5 yıl sonra:\n\n$$3k + 5 = 2(k + 5)$$\n$$3k + 5 = 2k + 10$$\n$$k = 5$$\n\nKontrol: Anne 15, kız 5 yaşında; 5 yıl sonra $20 = 2 \\cdot 10$ ✓"
   },
   {
     "id": "2025-2-say-17",
@@ -1279,7 +1279,7 @@
       "45"
     ],
     "answer": 3,
-    "solution": "Karışımdaki şeker miktarı: 20 · 0,30 = 6 kg\n\nBuharlaşan kısım su olduğu için şeker miktarı değişmez. Kalan karışım: 20 − 5 = 15 kg\n\nYeni oran: 6/15 = 40/100 = %40"
+    "solution": "Karışımdaki şeker miktarı: $20 \\cdot 0{,}30 = 6$ kg\n\nBuharlaşan kısım su olduğu için şeker miktarı değişmez. Kalan karışım: $20 - 5 = 15$ kg\n\nYeni oran: $\\dfrac{6}{15} = \\dfrac{40}{100} = \\%40$"
   },
   {
     "id": "2025-2-say-18",
@@ -1300,7 +1300,7 @@
       "104"
     ],
     "answer": 2,
-    "solution": "Gidiş süresi: 240/80 = 3 saat\nDönüş süresi: 240/120 = 2 saat\n\nToplam yol: 240 + 240 = 480 km\nToplam süre: 3 + 2 = 5 saat\n\nOrtalama hız = 480/5 = 96 km/sa\n\nDikkat: Hızların aritmetik ortalaması (100) yanıltıcıdır; ortalama hız toplam yol / toplam süredir."
+    "solution": "Gidiş süresi: $\\dfrac{240}{80} = 3$ saat\nDönüş süresi: $\\dfrac{240}{120} = 2$ saat\n\nToplam yol: $240 + 240 = 480$ km\nToplam süre: $3 + 2 = 5$ saat\n\nOrtalama hız =$\\dfrac{480}{5} = 96$ km/sa\n\nDikkat: Hızların aritmetik ortalaması (100) yanıltıcıdır; ortalama hız toplam yol / toplam süredir."
   },
   {
     "id": "2025-2-say-19",
@@ -1321,7 +1321,7 @@
       "15"
     ],
     "answer": 3,
-    "solution": "Üçgenin alanı, taban ve yükseklikle hesaplanır; alan değişmediği için iki ifadeyi eşitleyebiliriz.\n\nAlan = (9 · 8)/2 = 36 cm²\n\n(6 · h)/2 = 36 → 3h = 36 → h = 12 cm\n\nKural: Aynı üçgende taban ile ona ait yüksekliğin çarpımı sabittir (6 · 12 = 9 · 8 = 72)."
+    "solution": "Üçgenin alanı, taban ve yükseklikle hesaplanır; alan değişmediği için iki ifadeyi eşitleyebiliriz.\n\nAlan =$\\dfrac{9 \\cdot 8}{2} = 36 \\mathrm{cm}^{2}$\n\n$\\dfrac{6 \\cdot h}{2} = 36$ → $3h = 36$ → $h = 12$ cm\n\nKural: Aynı üçgende taban ile ona ait yüksekliğin çarpımı sabittir $(6 \\cdot 12 = 9 \\cdot 8 = 72)$."
   },
   {
     "id": "2025-2-say-20",
@@ -1333,7 +1333,7 @@
     "no": 20,
     "difficulty": "orta",
     "official": false,
-    "stem": "Çevresi 40 cm, alanı 96 cm² olan bir dikdörtgenin kısa kenarı kaç cm'dir?",
+    "stem": "Çevresi 40 cm, alanı $96 \\mathrm{cm}^{2}$ olan bir dikdörtgenin kısa kenarı kaç cm'dir?",
     "options": [
       "4",
       "6",
@@ -1342,7 +1342,7 @@
       "12"
     ],
     "answer": 2,
-    "solution": "Kenarlar a ve b olsun.\n\nÇevre: 2(a + b) = 40 → a + b = 20\nAlan: a · b = 96\n\nToplamı 20, çarpımı 96 olan sayılar 8 ve 12'dir:\n8 + 12 = 20 ve 8 · 12 = 96 ✓\n\nKısa kenar 8 cm'dir."
+    "solution": "Kenarlar $a$ ve $b$ olsun.\n\nÇevre: $2(a + b) = 40$ → $a + b = 20$\nAlan: $a \\cdot b = 96$\n\nToplamı 20, çarpımı 96 olan sayılar 8 ve 12'dir:\n$8 + 12 = 20$ ve $8 \\cdot 12 = 96$ ✓\n\nKısa kenar 8 cm'dir."
   },
   {
     "id": "2025-2-say-21",
@@ -1363,7 +1363,7 @@
       "9"
     ],
     "answer": 2,
-    "solution": "Son durumda her birinde 45/3 = 15 bilye vardır.\n\nBurak 5 bilye aldı, 8 bilye verdi → Burak'ın son durumu: B + 5 − 8 = 15 → B = 18\nCem 8 bilye aldı → C + 8 = 15 → C = 7\nAhmet 5 bilye verdi → A − 5 = 15 → A = 20\n\nKontrol: 20 + 18 + 7 = 45 ✓ → Cem'in 7 bilyesi vardır."
+    "solution": "Son durumda her birinde $\\dfrac{45}{3} = 15$ bilye vardır.\n\nBurak 5 bilye aldı, 8 bilye verdi → Burak'ın son durumu: $B + 5 - 8 = 15$ → $B = 18$\nCem 8 bilye aldı → $C + 8 = 15$ → $C = 7$\nAhmet 5 bilye verdi → $A - 5 = 15$ → $A = 20$\n\nKontrol: $20 + 18 + 7 = 45$ ✓ → Cem'in 7 bilyesi vardır."
   },
   {
     "id": "2025-2-say-22",
@@ -1384,7 +1384,7 @@
       "48"
     ],
     "answer": 2,
-    "solution": "Kızları tek bir blok olarak düşünelim: [K K K], E₁, E₂ → toplam 3 birim\n\nBu 3 birimin dizilişi: 3! = 6\nKızların blok içindeki dizilişi: 3! = 6\n\nToplam: 3! · 3! = 6 · 6 = 36"
+    "solution": "Kızları tek bir blok olarak düşünelim: [K K K], E₁, E₂ → toplam 3 birim\n\nBu 3 birimin dizilişi: $3! = 6$\nKızların blok içindeki dizilişi: $3! = 6$\n\nToplam: $3! \\cdot 3! = 6 \\cdot 6 = 36$"
   },
   {
     "id": "2025-2-soz-01",
@@ -1678,7 +1678,7 @@
       "34"
     ],
     "answer": 3,
-    "solution": "Beş sayının toplamı: 5 · 24 = 120\n\nKalan dört sayının toplamı: 4 · 22 = 88\n\nÇıkarılan sayı: 120 − 88 = 32"
+    "solution": "Beş sayının toplamı: $5 \\cdot 24 = 120$\n\nKalan dört sayının toplamı: $4 \\cdot 22 = 88$\n\nÇıkarılan sayı: $120 - 88 = 32$"
   },
   {
     "id": "2025-1-say-02",
@@ -1690,7 +1690,7 @@
     "no": 2,
     "difficulty": "kolay",
     "official": false,
-    "stem": "Bir sınıftaki öğrencilerin 3/5'i kızdır. Sınıftaki erkek öğrenci sayısı 16 olduğuna göre sınıf mevcudu kaçtır?",
+    "stem": "Bir sınıftaki öğrencilerin $\\dfrac{3}{5}$'i kızdır. Sınıftaki erkek öğrenci sayısı 16 olduğuna göre sınıf mevcudu kaçtır?",
     "options": [
       "32",
       "36",
@@ -1699,7 +1699,7 @@
       "48"
     ],
     "answer": 2,
-    "solution": "Öğrencilerin 3/5'i kız ise geriye kalan 2/5'i erkektir.\n\n2/5 · Mevcut = 16 → Mevcut = 16 · 5 / 2 = 40\n\nKontrol: 40 · 3/5 = 24 kız, 40 − 24 = 16 erkek."
+    "solution": "Öğrencilerin $\\dfrac{3}{5}$'i kız ise geriye kalan $\\dfrac{2}{5}$'i erkektir.\n\n$\\dfrac{2}{5}$· Mevcut = 16 → Mevcut =$16 \\cdot \\dfrac{5}{2} = 40$\n\nKontrol: $40 \\cdot \\dfrac{3}{5} = 24$ kız, $40 - 24 = 16$ erkek."
   },
   {
     "id": "2025-1-say-03",
@@ -1711,7 +1711,7 @@
     "no": 3,
     "difficulty": "orta",
     "official": false,
-    "stem": "x + y = 10 ve x · y = 21\n\nolduğuna göre x² + y² toplamı kaçtır?",
+    "stem": "$x + y = 10$ ve $x \\cdot y = 21$\n\nolduğuna göre $x^{2} + y^{2}$ toplamı kaçtır?",
     "options": [
       "42",
       "50",
@@ -1720,7 +1720,7 @@
       "79"
     ],
     "answer": 2,
-    "solution": "(x + y)² = x² + 2xy + y²\n\n10² = x² + y² + 2 · 21\n100 = x² + y² + 42\nx² + y² = 58\n\n(Not: x ve y, 3 ve 7'dir; 9 + 49 = 58.)"
+    "solution": "$$(x + y)^{2} = x^{2} + 2xy + y^{2}$$\n\n$$10^{2} = x^{2} + y^{2} + 2 \\cdot 21$$\n$$100 = x^{2} + y^{2} + 42$$\n$$x^{2} + y^{2} = 58$$\n\n(Not: $x$ ve $y$, 3 ve 7'dir; $9 + 49 = 58.$)"
   },
   {
     "id": "2025-1-say-04",
@@ -1732,16 +1732,16 @@
     "no": 4,
     "difficulty": "kolay",
     "official": false,
-    "stem": "Çevre uzunluğu 12π cm olan bir dairenin alanı kaç cm²'dir?",
+    "stem": "Çevre uzunluğu $12\\pi$ cm olan bir dairenin alanı kaç $\\mathrm{cm}^{2}$'dir?",
     "options": [
-      "12π",
-      "24π",
-      "30π",
-      "36π",
-      "48π"
+      "$12\\pi$",
+      "$24\\pi$",
+      "$30\\pi$",
+      "$36\\pi$",
+      "$48\\pi$"
     ],
     "answer": 3,
-    "solution": "Dairenin çevresi: 2πr = 12π → r = 6 cm\n\nAlan: πr² = π · 6² = 36π cm²"
+    "solution": "Dairenin çevresi: $2\\pi r = 12\\pi$ → $r = 6$ cm\n\nAlan: $\\pi r^{2} = \\pi \\cdot 6^{2} = 36\\pi \\mathrm{cm}^{2}$"
   },
   {
     "id": "2025-1-say-05",
@@ -1762,7 +1762,7 @@
       "940"
     ],
     "answer": 3,
-    "solution": "En büyük sayıyı elde etmek için yüzler basamağını en büyük rakam yapmalıyız: 9\n\nKalan iki basamağın toplamı 12 − 9 = 3 olmalıdır. Onlar basamağı büyük olmalı: 3 (çünkü 3 + 0 = 3).\n\nSayı 930'dur.\n\nKontrol: 9 + 3 + 0 = 12 ve daha büyük bir aday (940) 13 verir."
+    "solution": "En büyük sayıyı elde etmek için yüzler basamağını en büyük rakam yapmalıyız: 9\n\nKalan iki basamağın toplamı $12 - 9 = 3$ olmalıdır. Onlar basamağı büyük olmalı: 3 (çünkü $3 + 0 = 3$).\n\nSayı 930'dur.\n\nKontrol: $9 + 3 + 0 = 12$ ve daha büyük bir aday (940) 13 verir."
   },
   {
     "id": "2025-1-say-06",
@@ -1774,7 +1774,7 @@
     "no": 6,
     "difficulty": "kolay",
     "official": false,
-    "stem": "|x − 4| = 7\n\ndenklemini sağlayan x değerlerinin toplamı kaçtır?",
+    "stem": "$$|x - 4| = 7$$\n\ndenklemini sağlayan $x$ değerlerinin toplamı kaçtır?",
     "options": [
       "4",
       "7",
@@ -1783,7 +1783,7 @@
       "14"
     ],
     "answer": 2,
-    "solution": "|x − 4| = 7 ifadesi iki duruma ayrılır:\n\nx − 4 = 7 → x = 11\nx − 4 = −7 → x = −3\n\nKöklerin toplamı: 11 + (−3) = 8"
+    "solution": "$|x - 4| = 7$ ifadesi iki duruma ayrılır:\n\n$x - 4 = 7$ → $x = 11$\n$x - 4 = -7$ → $x = -3$\n\nKöklerin toplamı: $11 + (-3) = 8$"
   },
   {
     "id": "2025-1-say-07",
@@ -1804,7 +1804,7 @@
       "24"
     ],
     "answer": 2,
-    "solution": "İşçi sayısı ile süre ters orantılıdır: işçi sayısı azalırsa süre artar.\n\n12 · 15 = 9 · x → 180 = 9x → x = 20 gün"
+    "solution": "İşçi sayısı ile süre ters orantılıdır: işçi sayısı azalırsa süre artar.\n\n$12 \\cdot 15 = 9 \\cdot x$ → $180 = 9x$ → $x = 20$ gün"
   },
   {
     "id": "2025-1-say-08",
@@ -1816,7 +1816,7 @@
     "no": 8,
     "difficulty": "kolay",
     "official": false,
-    "stem": "(2³)² · 2^(−4)\n\nişleminin sonucu kaçtır?",
+    "stem": "$(2^{3})^{2} \\cdot 2^{-4}$\n\nişleminin sonucu kaçtır?",
     "options": [
       "1",
       "2",
@@ -1825,7 +1825,7 @@
       "16"
     ],
     "answer": 2,
-    "solution": "Üs alma kuralı: (a^m)^n = a^(m·n) → (2³)² = 2⁶\n\n2⁶ · 2^(−4) = 2^(6 − 4) = 2² = 4"
+    "solution": "Üs alma kuralı: $(a^{m})^{n} = a^{m\\cdot n}$ → $(2^{3})^{2} = 2^{6}$\n\n$$2^{6} \\cdot 2^{-4} = 2^{6 - 4} = 2^{2} = 4$$"
   },
   {
     "id": "2025-1-say-09",
@@ -1837,16 +1837,16 @@
     "no": 9,
     "difficulty": "orta",
     "official": false,
-    "stem": "Yarıçapı 8 cm olan bir dairede 45°'lik merkez açının gördüğü yayın uzunluğu kaç cm'dir?",
+    "stem": "Yarıçapı 8 cm olan bir dairede $45^{\\circ}$'lik merkez açının gördüğü yayın uzunluğu kaç cm'dir?",
     "options": [
-      "π",
-      "2π",
-      "4π",
-      "6π",
-      "8π"
+      "$\\pi$",
+      "$2\\pi$",
+      "$4\\pi$",
+      "$6\\pi$",
+      "$8\\pi$"
     ],
     "answer": 1,
-    "solution": "Yay uzunluğu = 2πr · (merkez açı / 360°)\n\n= 2π · 8 · (45/360)\n= 16π · (1/8)\n= 2π cm"
+    "solution": "Yay uzunluğu =$2\\pi r$· (merkez açı /$360^{\\circ}$)\n\n=$2\\pi \\cdot 8 \\cdot (\\dfrac{45}{360})$\n=$16\\pi \\cdot (\\dfrac{1}{8})$\n=$2\\pi$ cm"
   },
   {
     "id": "2025-1-say-10",
