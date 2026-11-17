@@ -32,6 +32,10 @@ export const BOOKLETS: Record<string, Booklet> = {
     url: "https://dokuman.osym.gov.tr/pdfdokuman/2021/ALES-1/CS/ALES1_sorular.pdf",
     label: "2021 ALES/1 Soru Kitapçığı (ÖSYM)",
   },
+  "2021-2": {
+    url: "https://dokuman.osym.gov.tr/pdfdokuman/2021/ALES-2/CS/ALES2_sorular.pdf",
+    label: "2021 ALES/2 Soru Kitapçığı (ÖSYM)",
+  },
 };
 
 export function bookletOf(question: Question): Booklet | undefined {
