@@ -1,30 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   officialCounts,
-  officialExamById,
   officialExams,
-  type OfficialExam,
   type OfficialLink,
 } from "../data/officialExams";
-import {
-  clearExamResult,
-  saveExamResult,
-  useExamResults,
-  type ExamResult,
-  type SectionScore,
-} from "../lib/store";
+import { examKey, questions } from "../data";
 import { navigate } from "../lib/router";
-
-const LETTERS = ["A", "B", "C", "D", "E"] as const;
-const PER_SECTION = 50;
-
-type SectionKey = "sayisal" | "sozel";
-type Marks = Record<string, string>;
-
-const SECTION_LABELS: Record<SectionKey, string> = {
-  sayisal: "Sayısal Testi",
-  sozel: "Sözel Testi",
-};
 
 const KIND_LABELS = {
   all: "Tümü",
@@ -34,55 +15,6 @@ const KIND_LABELS = {
 
 type KindFilter = keyof typeof KIND_LABELS;
 
-function draftKey(examId: string): string {
-  return `ales-pratik:sheet:${examId}`;
-}
-
-function loadDraft(examId: string): Marks {
-  try {
-    const raw = localStorage.getItem(draftKey(examId));
-    if (!raw) return {};
-    const parsed = JSON.parse(raw) as Marks;
-    return parsed && typeof parsed === "object" ? parsed : {};
-  } catch {
-    return {};
-  }
-}
-
-function saveDraft(examId: string, marks: Marks): void {
-  try {
-    localStorage.setItem(draftKey(examId), JSON.stringify(marks));
-  } catch {
-    /* yoksay */
-  }
-}
-
-function formatNet(value: number): string {
-  return value.toLocaleString("tr-TR", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
-}
-
-function scoreSection(
-  answers: string | undefined,
-  marks: Marks,
-  section: SectionKey,
-): SectionScore {
-  let correct = 0;
-  let wrong = 0;
-  let empty = 0;
-
-  for (let no = 1; no <= PER_SECTION; no += 1) {
-    const mark = marks[`${section}-${no}`];
-    if (!mark || !answers) {
-      empty += 1;
-      continue;
-    }
-    if (answers[no - 1] === mark) correct += 1;
-    else wrong += 1;
-  }
-
-  return { correct, wrong, empty };
-}
-
 function shortLinkLabel(link: OfficialLink): string {
   const label = link.label.toLocaleLowerCase("tr");
   if (label.includes("cevap")) return "Cevap anahtarı";
@@ -90,20 +22,25 @@ function shortLinkLabel(link: OfficialLink): string {
   return "Kitapçık";
 }
 
-export default function Official({ params }: { params: URLSearchParams }) {
-  const id = params.get("e");
-  const exam = id ? officialExamById(id) : undefined;
-  return exam ? <ExamDetail key={exam.id} exam={exam} /> : <Archive />;
+function questionCount(examId: string, counts: Map<string, number>): number {
+  return counts.get(examId) ?? 0;
 }
 
-/* ---------- arşiv listesi ---------- */
-
-function Archive() {
-  const results = useExamResults();
+export default function Official() {
   const [kind, setKind] = useState<KindFilter>("all");
   const [year, setYear] = useState("");
 
   const years = useMemo(() => [...new Set(officialExams.map((exam) => exam.year))], []);
+
+  /** Soru bankasındaki sınav kimliği → soru sayısı */
+  const counts = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const question of questions) {
+      const key = examKey(question);
+      map.set(key, (map.get(key) ?? 0) + 1);
+    }
+    return map;
+  }, []);
 
   const list = useMemo(
     () =>
@@ -113,6 +50,11 @@ function Archive() {
     [kind, year],
   );
 
+  const totalQuestions = useMemo(
+    () => list.reduce((sum, exam) => sum + questionCount(exam.id, counts), 0),
+    [list, counts],
+  );
+
   return (
     <div className="page">
       <header className="pagehead">
@@ -120,24 +62,30 @@ function Archive() {
           <h1>Resmî sınav arşivi</h1>
           <p className="pagehead__sub">
             {officialCounts.total} ÖSYM kitapçığı · {officialCounts.tam} tam sınav ·{" "}
-            {officialCounts.yuzde10} %10 kitapçık · {officialCounts.graded} sınavda optik form
+            {officialCounts.yuzde10} %10 kitapçık
           </p>
         </div>
-        <button type="button" className="btn btn--soft btn--sm" onClick={() => navigate("practice", { set: "all" })}>
+        <button
+          type="button"
+          className="btn btn--soft btn--sm"
+          onClick={() => navigate("practice", { set: "all" })}
+        >
           Soru bankasına dön
         </button>
       </header>
 
       <div className="notice notice--muted">
-        <h3>Bu sayfa ne yapar?</h3>
+        <h3>Nasıl çalışır?</h3>
         <p>
-          Aşağıdaki bağlantılar soruları <strong>doğrudan ÖSYM'nin doküman sunucusundan</strong> açar; PDF'ler bu
-          uygulamada barındırılmaz, kopyalanmaz. 2019–2021 tam kitapçıklarının sonunda yer alan resmî cevap
-          anahtarı okunmuştur: bu sınavlar için işaretlemelerini girip net hesaplayabilirsin.
+          Her sınavın yanındaki <strong>Çalış</strong> düğmesi, o sınav için soru bankasına eklenmiş
+          soruları açar. Sorular ÖSYM'nin resmî kitapçıklarından alınır ve her sorunun kartında
+          kitapçığın ilgili sayfasına giden bir <strong>PDF bağlantısı</strong> bulunur.
         </p>
         <p className="notice__small">
-          %10'luk kitapçıklarda her sorunun doğru cevabı, sorunun hemen altında yazılıdır; bu yüzden ayrı optik
-          form yoktur. Eski yıllarda (2006–2008) sözel ve sayısal testler ayrı dosyalar hâlindedir.
+          Kitapçık ve duyuru bağlantıları doğrudan ÖSYM'nin doküman sunucusuna gider; PDF'ler bu
+          uygulamada barındırılmaz. Bir sınavın soruları henüz eklenmediyse Çalış ekranı bunu söyler ve
+          kitapçığı açman için bağlantı verir. %10'luk kitapçıklarda her sorunun doğru cevabı sorunun
+          hemen altında yazılıdır.
         </p>
       </div>
 
@@ -166,19 +114,21 @@ function Archive() {
             ))}
           </select>
         </label>
-        <span className="archivebar__count">{list.length} kitapçık</span>
+        <span className="archivebar__count">
+          {list.length} kitapçık · {totalQuestions} soru
+        </span>
       </div>
 
       <ul className="examlists">
         {list.map((exam) => {
-          const result = results[exam.id];
+          const count = questionCount(exam.id, counts);
           return (
             <li className="examrow" key={exam.id}>
               <div className="examrow__main">
                 <div className="examrow__title">
                   <strong>{exam.label}</strong>
                   <span className={`tag ${exam.kind === "tam" ? "tag--tam" : "tag--y10"}`}>
-                    {exam.kind === "tam" ? "Tam sınav · 100 soru" : "%10 kitapçık"}
+                    {exam.kind === "tam" ? "Tam sınav" : "%10 kitapçık"}
                   </span>
                   {exam.date && <span className="examrow__date">{exam.date}</span>}
                 </div>
@@ -197,18 +147,21 @@ function Archive() {
                 </div>
               </div>
               <div className="examrow__side">
-                {result && <span className="examrow__score">Net {formatNet(result.net)}</span>}
-                {exam.answers ? (
-                  <button
-                    type="button"
-                    className="btn btn--primary btn--sm"
-                    onClick={() => navigate("official", { e: exam.id })}
-                  >
-                    Optik form
-                  </button>
-                ) : (
-                  <span className="examrow__hint">Cevap sorunun altında</span>
-                )}
+                <span className={`examrow__count${count === 0 ? " is-empty" : ""}`}>
+                  {count === 0 ? "Soru eklenmedi" : `${count} soru`}
+                </span>
+                <button
+                  type="button"
+                  className={`btn btn--sm ${count > 0 ? "btn--primary" : "btn--soft"}`}
+                  onClick={() => navigate("practice", { exam: exam.id, set: "all" })}
+                  title={
+                    count > 0
+                      ? `${exam.label} sorularını çalış`
+                      : `${exam.label} soruları henüz eklenmedi — kitapçığı PDF'ten açabilirsin`
+                  }
+                >
+                  Çalış
+                </button>
               </div>
             </li>
           );
@@ -216,228 +169,10 @@ function Archive() {
       </ul>
 
       <p className="archivefoot">
-        Kaynak: ÖSYM doküman sunucusu. Bağlantılar ÖSYM'nin yayımladığı duyuru sayfalarından derlenmiştir;
-        dosyalar kaldırılırsa bağlantı çalışmayabilir. Soruların telif hakkı ÖSYM'ye aittir.
+        Kaynak: ÖSYM doküman sunucusu. Bağlantılar ÖSYM'nin yayımladığı duyuru sayfalarından
+        derlenmiştir; dosyalar kaldırılırsa bağlantı çalışmayabilir. Soruların telif hakkı ÖSYM'ye
+        aittir.
       </p>
-    </div>
-  );
-}
-
-/* ---------- tek sınav: optik form ---------- */
-
-function ExamDetail({ exam }: { exam: OfficialExam }) {
-  const results = useExamResults();
-  const [marks, setMarks] = useState<Marks>(() => loadDraft(exam.id));
-  const [checked, setChecked] = useState(false);
-
-  useEffect(() => {
-    setMarks(loadDraft(exam.id));
-    setChecked(false);
-  }, [exam.id]);
-
-  useEffect(() => {
-    saveDraft(exam.id, marks);
-  }, [exam.id, marks]);
-
-  const saved = results[exam.id];
-  const filled = Object.values(marks).filter(Boolean).length;
-
-  const live = useMemo(() => {
-    if (!exam.answers) return null;
-    const sayisal = scoreSection(exam.answers.sayisal, marks, "sayisal");
-    const sozel = scoreSection(exam.answers.sozel, marks, "sozel");
-    return {
-      sayisal,
-      sozel,
-      net:
-        sayisal.correct + sozel.correct - (sayisal.wrong + sozel.wrong) / 4,
-    };
-  }, [exam.answers, marks]);
-
-  const pick = (section: SectionKey, no: number, letter: string) => {
-    const key = `${section}-${no}`;
-    setMarks((previous) => ({
-      ...previous,
-      [key]: previous[key] === letter ? "" : letter,
-    }));
-    setChecked(false);
-  };
-
-  const grade = () => {
-    if (!live) return;
-    const result: ExamResult = {
-      examId: exam.id,
-      sayisal: live.sayisal,
-      sozel: live.sozel,
-      net: live.net,
-      at: Date.now(),
-    };
-    saveExamResult(result);
-    setChecked(true);
-  };
-
-  const clearSheet = () => {
-    setMarks({});
-    setChecked(false);
-    clearExamResult(exam.id);
-    try {
-      localStorage.removeItem(draftKey(exam.id));
-    } catch {
-      /* yoksay */
-    }
-  };
-
-  return (
-    <div className="page">
-      <button type="button" className="backlink" onClick={() => navigate("official")}>
-        ← Resmî sınav arşivi
-      </button>
-
-      <header className="pagehead">
-        <div>
-          <h1>{exam.label}</h1>
-          <p className="pagehead__sub">
-            {exam.kind === "tam" ? "Tam soru kitapçığı · 100 soru" : "%10 temel soru kitapçığı"}
-            {exam.date ? ` · ${exam.date}` : ""}
-          </p>
-        </div>
-        <div className="pagehead__actions">
-          {exam.links.map((link) => (
-            <a
-              key={link.url}
-              className={`btn btn--sm ${link.label.includes("Cevap") ? "btn--ghost" : "btn--soft"}`}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {shortLinkLabel(link)} ↗
-            </a>
-          ))}
-        </div>
-      </header>
-
-      {!exam.answers ? (
-        <div className="notice notice--muted">
-          <h3>Bu kitapçıkta optik form yok</h3>
-          <p>
-            %10'luk kitapçıklarda soruların yalnızca bir bölümü yayımlanır ve her sorunun doğru cevabı sorunun
-            hemen altında yazılıdır. Soruları ÖSYM'nin PDF'inden çözebilirsin.
-          </p>
-        </div>
-      ) : (
-        <>
-          <div className="sheetnote">
-            <p>
-              Soruları yukarıdaki <strong>Kitapçık</strong> bağlantısından aç, işaretlemelerini buraya gir.
-              Değerlendirince cevapların resmî anahtarla karşılaştırılır; 4 yanlış 1 doğruyu götürür.
-            </p>
-            <span className="sheetnote__count">{filled} / 100 işaretlendi</span>
-          </div>
-
-          <div className="sheet">
-            {(["sayisal", "sozel"] as const).map((section) => {
-              const answers = exam.answers?.[section];
-              const sectionScore = checked && live ? live[section] : null;
-              return (
-                <section className="sheet__col" key={section}>
-                  <header className="sheet__head">
-                    <h3>
-                      <span className={`dot dot--${section}`} />
-                      {SECTION_LABELS[section]}
-                    </h3>
-                    {sectionScore ? (
-                      <span className="sheet__scoreline">
-                        {sectionScore.correct} D · {sectionScore.wrong} Y · {sectionScore.empty} B
-                      </span>
-                    ) : (
-                      <span className="sheet__scoreline">
-                        {Array.from({ length: PER_SECTION }, (_, i) => marks[`${section}-${i + 1}`]).filter(Boolean)
-                          .length}{" "}
-                        / {PER_SECTION}
-                      </span>
-                    )}
-                  </header>
-
-                  <ol className="sheet__list">
-                    {Array.from({ length: PER_SECTION }, (_, index) => index + 1).map((no) => {
-                      const key = `${section}-${no}`;
-                      const picked = marks[key];
-                      const answer = answers?.[no - 1];
-                      const state =
-                        checked && answer
-                          ? !picked
-                            ? " empty"
-                            : picked === answer
-                              ? " ok"
-                              : " no"
-                          : "";
-                      return (
-                        <li key={no} className={`sheetrow${state}`}>
-                          <span className="sheetrow__no">{no}</span>
-                          <span className="sheetrow__letters">
-                            {LETTERS.map((letter) => (
-                              <button
-                                key={letter}
-                                type="button"
-                                className={`letterbtn${picked === letter ? " is-picked" : ""}${
-                                  checked && answer === letter ? " is-answer" : ""
-                                }`}
-                                onClick={() => pick(section, no, letter)}
-                                aria-pressed={picked === letter}
-                                aria-label={`${SECTION_LABELS[section]} ${no}. soru ${letter}`}
-                              >
-                                {letter}
-                              </button>
-                            ))}
-                          </span>
-                          {checked && picked && answer && picked !== answer && (
-                            <span className="sheetrow__key">{answer}</span>
-                          )}
-                        </li>
-                      );
-                    })}
-                  </ol>
-                </section>
-              );
-            })}
-          </div>
-
-          <div className="sheetbar">
-            <div className="sheetbar__info">
-              {checked && live ? (
-                <>
-                  <strong>Net {formatNet(live.net)}</strong>
-                  <span>
-                    Doğru {live.sayisal.correct + live.sozel.correct} · Yanlış{" "}
-                    {live.sayisal.wrong + live.sozel.wrong} · Boş {live.sayisal.empty + live.sozel.empty}
-                  </span>
-                </>
-              ) : (
-                <>
-                  <strong>{filled} işaret</strong>
-                  <span>Değerlendirmek için işaretlemelerini tamamla</span>
-                </>
-              )}
-            </div>
-            <div className="sheetbar__actions">
-              <button type="button" className="btn btn--ghost btn--sm" onClick={clearSheet}>
-                Temizle
-              </button>
-              <button type="button" className="btn btn--primary" onClick={grade}>
-                Değerlendir
-              </button>
-            </div>
-          </div>
-
-          {saved && !checked && (
-            <p className="sheetnote sheetnote--saved">
-              Bu sınav için kayıtlı sonucun: <strong>Net {formatNet(saved.net)}</strong> (
-              {new Date(saved.at).toLocaleDateString("tr-TR")}). Yeniden değerlendirmek için işaretlemelerini
-              güncelle.
-            </p>
-          )}
-        </>
-      )}
     </div>
   );
 }

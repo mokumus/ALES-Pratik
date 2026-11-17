@@ -21,7 +21,7 @@ type ParamValue = string | number | undefined | null;
  *   #/                  ana sayfa
  *   #/calis?set=unsolved&exam=2026-1&q=2026-1-say-04
  *   #/sorular?section=sozel
- *   #/resmi?e=2021-1    resmî sınav arşivi / optik form
+ *   #/resmi             resmî sınav arşivi
  *
  * `q` parametresi, açılacak sorunun kimliğidir. Çalışma ekranı gezinirken bu
  * parametreyi günceller; böylece adres çubuğundaki bağlantı her zaman ekranda

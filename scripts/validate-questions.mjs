@@ -12,10 +12,17 @@ import { dirname, join } from "node:path";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const file = join(here, "..", "src", "data", "questions.json");
+const bookletsFile = join(here, "..", "src", "data", "booklets.ts");
+const strict = process.argv.includes("--strict");
 
 const SECTIONS = new Set(["sayisal", "sozel"]);
 const DIFFICULTIES = new Set(["kolay", "orta", "zor"]);
 const LETTERS = ["A", "B", "C", "D", "E"];
+
+/** booklets.ts içinde tanımlı sınav kimlikleri ("2026-1" gibi). */
+const bookletKeys = new Set(
+  [...readFileSync(bookletsFile, "utf8").matchAll(/"(\d{4}-\d)":\s*\{/g)].map((match) => match[1]),
+);
 
 let questions;
 try {
@@ -83,6 +90,19 @@ questions.forEach((q, index) => {
       errors.push(`${where}: "pdfPage" yalnızca resmî sorularda (official: true) kullanılabilir.`);
     }
   }
+
+  if (typeof q.official !== "boolean") {
+    errors.push(`${where}: "official" true/false olmalı.`);
+  } else if (q.official) {
+    if (!Number.isInteger(q.pdfPage)) {
+      errors.push(`${where}: resmî soruda "pdfPage" zorunlu (soruya PDF bağlantısı verilir).`);
+    }
+    if (!bookletKeys.has(`${q.year}-${q.session}`)) {
+      errors.push(
+        `${where}: "${q.year}-${q.session}" için src/data/booklets.ts içinde kitapçık PDF adresi yok.`,
+      );
+    }
+  }
 });
 
 if (errors.length > 0) {
@@ -105,4 +125,13 @@ for (const [label, counts] of [...byExam.entries()].sort().reverse()) {
   console.log(`  · ${label}: ${counts.total} soru (sayısal ${counts.sayisal}, sözel ${counts.sozel})`);
 }
 const topics = new Set(questions.map((q) => q.topic));
-console.log(`  · ${topics.size} konu, ${questions.filter((q) => q.official).length} resmî soru`);
+const official = questions.filter((q) => q.official).length;
+const sample = questions.filter((q) => !q.official).length;
+console.log(`  · ${topics.size} konu, ${official} resmî soru`);
+if (sample > 0) {
+  console.log(`  · ${sample} örnek soru (PDF bağlantısı yok; --strict ile hata verilir)`);
+}
+if (strict && sample > 0) {
+  console.error(`\n✖ --strict: ${sample} soru resmî değil. Tüm sorular çıkmış soru olmalı.`);
+  process.exit(1);
+}

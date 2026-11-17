@@ -135,11 +135,11 @@ export default function Home() {
         </div>
         <div className="cta">
           <div>
-            <h3>Gerçek sınavı süre tutarak çöz</h3>
+            <h3>Gerçek sınavı çöz</h3>
             <p>
-              Soru kitapçığını yeni sekmede aç, işaretlemelerini uygulamadaki optik forma gir.{" "}
-              {officialCounts.graded} tam sınavın resmî cevap anahtarı okundu; net sonucun 4 yanlış 1 doğruyu
-              götürecek biçimde hesaplanır.
+              Soru kitapçığını yeni sekmede aç; o sınavın soruları bankaya eklendikçe yanındaki{" "}
+              <strong>Çalış</strong> düğmesiyle doğrudan o sınavın sorularına geçebilirsin. Her resmî
+              sorunun kartında kitapçığın ilgili sayfasına giden PDF bağlantısı bulunur.
             </p>
           </div>
           <div className="cta__actions">

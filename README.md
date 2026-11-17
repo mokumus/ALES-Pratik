@@ -4,8 +4,7 @@ Geçmiş ALES sınavlarından derlenen sorularla çalışmak için tarayıcıda 
 soru pratiği uygulaması. Kurulum, sunucu veya veritabanı gerektirmez: tüm ilerleme kullanıcının
 tarayıcısında (`localStorage`) tutulur.
 
-**Canlı örnek:** GitHub Pages'e yayınladıktan sonra `https://<kullanıcı-adı>.github.io/ALES-Pratik/`
-adresinden açılır.
+**Canlı site:** <https://ales-pratik.web.app> — Firebase Hosting üzerinde yayında.
 
 ---
 
@@ -195,17 +194,23 @@ tabanlı yönlendirme (`#/calis`) kullanılır; sunucu tarafı yeniden yazma kur
 
 > Özel alan adı kullanacaksanız `public/CNAME` dosyasına alan adını ekleyin.
 
-### 2) Firebase Hosting (alternatif)
+### 2) Firebase Hosting
+
+Site `https://ales-pratik.web.app` adresinde yayında. Yeniden yayınlamak için:
 
 ```bash
-npm install -g firebase-tools
-firebase login
-firebase init hosting     # mevcut proje, public dizini: dist, SPA rewrites: No
+npm run deploy          # derler ve yalnızca hosting'i yayınlar
+```
+
+`firebase.json` yayın dizinini (`dist`) ve önbellek başlıklarını, `.firebaserc` ise `ales-pratik`
+projesini tanımlar. Elle yayınlamak isterseniz:
+
+```bash
 npm run build
 firebase deploy --only hosting
 ```
 
-`firebase.json` bu proje için hazır (yayın dizini `dist`). Yayın adresi
+Proje kimliği değişirse `.firebaserc` içindeki `default` alanını güncelleyin; adres
 `https://<proje-id>.web.app` biçiminde olur.
 
 ---

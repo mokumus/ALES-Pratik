@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview --port 4173",
+    "deploy": "npm run build && firebase deploy --only hosting",
     "validate": "node scripts/validate-questions.mjs",
     "check": "tsc --noEmit && npm run validate && npm run check:tex",
     "check:tex": "node scripts/check-tex.mjs",

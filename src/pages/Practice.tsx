@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Question, Section } from "../types";
 import { SECTION_LABELS, TOPICS, examKey, exams, questions } from "../data";
+import { officialExamById } from "../data/officialExams";
 import { navigate, replaceParams } from "../lib/router";
 import { scoreOf, useProgress, type ProgressState } from "../lib/store";
 import QuestionView from "../components/QuestionView";
@@ -72,6 +73,12 @@ export default function Practice({ params }: { params: URLSearchParams }) {
   const n = Math.max(1, Number(params.get("n") ?? 10) || 10);
   const targetId = params.get("q") ?? "";
   const salt = params.get("r") ?? "";
+  const archiveExam = exam ? officialExamById(exam) : undefined;
+  const examLabel = archiveExam?.label ?? exams.find((e) => e.key === exam)?.label ?? exam;
+  const bookletLink = archiveExam?.links.find((link) => {
+    const label = link.label.toLocaleLowerCase("tr");
+    return !label.includes("cevap") && !label.includes("duyuru");
+  });
 
   const [seed] = useState(() => Math.floor(Math.random() * 1e9));
   const options: BuildOptions = { set, exam, section, topic, n };
@@ -135,17 +142,46 @@ export default function Practice({ params }: { params: URLSearchParams }) {
     return (
       <div className="page page--narrow">
         <header className="pagehead">
-          <h1>Çalış</h1>
+          <div>
+            <h1>Çalış</h1>
+            {archiveExam && <p className="pagehead__sub">{archiveExam.label}</p>}
+          </div>
         </header>
-        <div className="card empty">
-          <h2>Bu filtreyle soru bulunamadı</h2>
-          <p>
-            Seçtiğin ölçütlere uyan soru yok. Filtreleri sıfırlayarak tüm soru bankasıyla devam edebilirsin.
-          </p>
-          <button type="button" className="btn btn--primary" onClick={() => navigate("practice")}>
-            Filtreleri temizle
-          </button>
-        </div>
+        {archiveExam ? (
+          <div className="card empty">
+            <h2>{archiveExam.label} soruları henüz eklenmedi</h2>
+            <p>
+              Bu sınavın soruları soru bankasına henüz eklenmedi. Kitapçığı ÖSYM'nin PDF'inden
+              açabilirsin; sorular eklendikçe bu sayfa o sınavın sorularını gösterecek.
+            </p>
+            <div className="empty__actions">
+              {bookletLink && (
+                <a
+                  className="btn btn--primary"
+                  href={bookletLink.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Kitapçığı aç ↗
+                </a>
+              )}
+              <button type="button" className="btn btn--ghost" onClick={() => navigate("official")}>
+                Arşive dön
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="card empty">
+            <h2>Bu filtreyle soru bulunamadı</h2>
+            <p>
+              Seçtiğin ölçütlere uyan soru yok. Filtreleri sıfırlayarak tüm soru bankasıyla devam
+              edebilirsin.
+            </p>
+            <button type="button" className="btn btn--primary" onClick={() => navigate("practice")}>
+              Filtreleri temizle
+            </button>
+          </div>
+        )}
       </div>
     );
   }
@@ -205,7 +241,7 @@ export default function Practice({ params }: { params: URLSearchParams }) {
         <div>
           <h1>Çalış</h1>
           <p className="pagehead__sub">
-            {exam ? `${exams.find((e) => e.key === exam)?.label ?? exam} · ` : ""}
+            {exam ? `${examLabel} · ` : ""}
             {section ? `${SECTION_LABELS[section as Section]} · ` : ""}
             {topic ? `${topic} · ` : ""}
             {list.length} soru
@@ -236,6 +272,9 @@ export default function Practice({ params }: { params: URLSearchParams }) {
                 {item.label} · {item.period}
               </option>
             ))}
+            {archiveExam && !exams.some((item) => item.key === archiveExam.id) && (
+              <option value={archiveExam.id}>{archiveExam.label}</option>
+            )}
           </select>
         </label>
         <label className="field">

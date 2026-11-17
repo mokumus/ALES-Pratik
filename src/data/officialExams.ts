@@ -2,9 +2,8 @@
  * ÖSYM'nin doküman sunucusundaki ALES soru kitapçıkları.
  *
  * Bağlantılar doğrudan ÖSYM'ye gider; uygulama bu dosyaları barındırmaz.
- * "answers" alanı yalnızca cevap anahtarı aynı PDF'in sonunda yayımlanan
- * sınavlar için doldurulmuştur (2019–2021 tam kitapçıklar) ve optik form
- * değerlendirmesinde kullanılır.
+ * "Çalış" düğmesi, soru bankasına eklenmiş soruları sınav kimliğine göre
+ * filtreler; soruların kendisi `questions.json` içinde tutulur.
  */
 
 export interface OfficialLink {
@@ -23,8 +22,6 @@ export interface OfficialExam {
   /** tam: 100 soruluk tam kitapçık, yuzde10: %10'luk temel soru kitapçığı */
   kind: "tam" | "yuzde10";
   links: OfficialLink[];
-  /** 50 + 50 harflik resmî cevap anahtarı */
-  answers?: { sayisal: string; sozel: string };
 }
 
 export const officialExams: OfficialExam[] = [
@@ -206,7 +203,6 @@ export const officialExams: OfficialExam[] = [
       { label: "Soru kitapçığı", url: "https://dokuman.osym.gov.tr/pdfdokuman/2021/ALES-3/CS/ALES3_sorular.pdf" },
       { label: "Cevap anahtarı", url: "https://dokuman.osym.gov.tr/pdfdokuman/2021/ALES-3/CS/ALES3_sorular.pdf#page=37" },
     ],
-    answers: {"sayisal":"BCACBECACCDEABBEEDEDEBEEBDADCDBBAACADCABCDDBCABEAA","sozel":"AADEAEEACEBBBBDACDCAACBBDCCAADBDDAADAEDEEAEAEBEADC"},
   },
   {
     id: "2021-3-yuzde10",
@@ -230,7 +226,6 @@ export const officialExams: OfficialExam[] = [
       { label: "Soru kitapçığı", url: "https://dokuman.osym.gov.tr/pdfdokuman/2021/ALES-2/CS/ALES2_sorular.pdf" },
       { label: "Cevap anahtarı", url: "https://dokuman.osym.gov.tr/pdfdokuman/2021/ALES-2/CS/ALES2_sorular.pdf#page=37" },
     ],
-    answers: {"sayisal":"AEADBCDACEEDACDDBCEBCEDBCACDBCEABCAEBACEBDBADDEAEB","sozel":"DBAADBBBDCBBCACBCABCEEABBBEAADCDAEECEDACCCDDECECAD"},
   },
   {
     id: "2021-2-yuzde10",
@@ -254,7 +249,6 @@ export const officialExams: OfficialExam[] = [
       { label: "Soru kitapçığı", url: "https://dokuman.osym.gov.tr/pdfdokuman/2021/ALES-1/CS/ALES1_sorular.pdf" },
       { label: "Cevap anahtarı", url: "https://dokuman.osym.gov.tr/pdfdokuman/2021/ALES-1/CS/ALES1_sorular.pdf#page=36" },
     ],
-    answers: {"sayisal":"BAAEBDBBEBAABDAECADBCCCDEBCDAEECDDEDBEADECCCAEACDE","sozel":"BAABCBDEABAECDCBADDEBECDCDDEDABABACBEEACDECDEDCBCA"},
   },
   {
     id: "2021-1-yuzde10",
@@ -278,7 +272,6 @@ export const officialExams: OfficialExam[] = [
       { label: "Soru kitapçığı", url: "https://dokuman.osym.gov.tr/pdfdokuman/2020/ALES-2/CS/ALES2_sorular.pdf" },
       { label: "Cevap anahtarı", url: "https://dokuman.osym.gov.tr/pdfdokuman/2020/ALES-2/CS/ALES2_sorular.pdf#page=37" },
     ],
-    answers: {"sayisal":"ECAADDCBEDAECBCCBCEDBDBBDADECABEBBDCBDECDBEACDEAAD","sozel":"BABDBDDEBADDCBBAADCDEDECCBEEBDDAACBEAECEBCBCBDCECB"},
   },
   {
     id: "2020-2-yuzde10",
@@ -302,7 +295,6 @@ export const officialExams: OfficialExam[] = [
       { label: "Soru kitapçığı", url: "https://dokuman.osym.gov.tr/pdfdokuman/2020/ALES-1/CS/ALES1_sorular.pdf" },
       { label: "Cevap anahtarı", url: "https://dokuman.osym.gov.tr/pdfdokuman/2020/ALES-1/CS/ALES1_sorular.pdf#page=36" },
     ],
-    answers: {"sayisal":"BCAEADAECBDBCDABDCBCBEDEABEDECCDDDEDCADBCDBABEBCEE","sozel":"ECEACCDBCECECDBDDCADDABDBCCAADAEDADABCABBAAECCABBC"},
   },
   {
     id: "2020-1-yuzde10",
@@ -326,7 +318,6 @@ export const officialExams: OfficialExam[] = [
       { label: "Soru kitapçığı", url: "https://dokuman.osym.gov.tr/pdfdokuman/2019/ALES-3/CS/ALES3_sorular.pdf" },
       { label: "Cevap anahtarı", url: "https://dokuman.osym.gov.tr/pdfdokuman/2019/ALES-3/CS/ALES3_sorular.pdf#page=36" },
     ],
-    answers: {"sayisal":"CDDAABDEDADEADCBDCECBCAAAECECBABCCCEDEAEBADECBBADB","sozel":"ABAADABEDEDBEBCEBDECDABCBBCEDADAEDCDBCDBCEADBAECEB"},
   },
   {
     id: "2019-3-yuzde10",
@@ -350,7 +341,6 @@ export const officialExams: OfficialExam[] = [
       { label: "Soru kitapçığı", url: "https://dokuman.osym.gov.tr/pdfdokuman/2019/ALES-2/CS/ALES2_sorular.pdf" },
       { label: "Cevap anahtarı", url: "https://dokuman.osym.gov.tr/pdfdokuman/2019/ALES-2/CS/ALES2_sorular.pdf#page=36" },
     ],
-    answers: {"sayisal":"ABBCCEEDBCEABAACDBCDBACEDBCDBCAEDECCBCDDBBEBCCDDAD","sozel":"BDAABCEECAEBBBCCCABEBEEEBDCBDCECBBDCADCCDEBEDCCEEA"},
   },
   {
     id: "2019-2-yuzde10",
@@ -374,7 +364,6 @@ export const officialExams: OfficialExam[] = [
       { label: "Soru kitapçığı", url: "https://dokuman.osym.gov.tr/pdfdokuman/2019/ALES-1/CS/ALES1_sorular.pdf" },
       { label: "Cevap anahtarı", url: "https://dokuman.osym.gov.tr/pdfdokuman/2019/ALES-1/CS/ALES1_sorular.pdf#page=36" },
     ],
-    answers: {"sayisal":"BCEACDBAECEEBBCABECDCACDECDBCDAADBDABACBEDEADEBCDE","sozel":"ABACBCEDEECECDCDEBCDABDEDBAECEADADABADCDDBCEBDDECB"},
   },
   {
     id: "2019-1-yuzde10",
@@ -825,13 +814,8 @@ export function officialExamById(id: string): OfficialExam | undefined {
   return officialExams.find((exam) => exam.id === id);
 }
 
-export function hasAnswerSheet(exam: OfficialExam): boolean {
-  return Boolean(exam.answers);
-}
-
 export const officialCounts = {
   total: officialExams.length,
   tam: officialExams.filter((e) => e.kind === "tam").length,
   yuzde10: officialExams.filter((e) => e.kind === "yuzde10").length,
-  graded: officialExams.filter((e) => e.answers).length,
 };

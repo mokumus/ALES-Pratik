@@ -18,7 +18,7 @@ export default function App() {
       {route.view === "home" && <Home />}
       {route.view === "practice" && <Practice params={route.params} />}
       {route.view === "bank" && <Bank params={route.params} />}
-      {route.view === "official" && <Official params={route.params} />}
+      {route.view === "official" && <Official />}
     </Layout>
   );
 }
