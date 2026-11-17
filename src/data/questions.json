@@ -20,5 +20,115 @@
     "answer": 4,
     "solution": "Paydaları eşitlemek için eşitliğin her iki tarafını 12 ile çarpalım (4, 3 ve 2 sayılarının en küçük ortak katı 12'dir):\n\n$$3 \\cdot (-3x-1) + 4 \\cdot (2x+2) + 6 \\cdot (x-3) = 12$$\n\nParantezleri açalım:\n\n$$-9x - 3 + 8x + 8 + 6x - 18 = 12$$\n\nBenzer terimleri toplayalım:\n\n$$(-9x + 8x + 6x) + (-3 + 8 - 18) = 12$$\n\n$$5x - 13 = 12 \\Rightarrow 5x = 25 \\Rightarrow x = 5$$\n\nKontrol: $x = 5$ için $\\frac{-16}{4} = -4$, $\\frac{12}{3} = 4$, $\\frac{2}{2} = 1$ olduğundan $-4 + 4 + 1 = 1$ ✓\n\nBu soru 2026 ALES/1 temel soru kitapçığındaki 7. sorudur.",
     "pdfPage": 4
+  },
+  {
+    "id": "2021-1-say-01",
+    "year": 2021,
+    "session": 1,
+    "period": "İlkbahar",
+    "section": "sayisal",
+    "topic": "Rasyonel Sayılar",
+    "no": 1,
+    "difficulty": "orta",
+    "official": true,
+    "stem": "$$\\frac{2 - \\frac{3}{4}}{3 + \\frac{1}{5}} \\cdot \\frac{8}{25}$$\n\nişleminin sonucu kaçtır?",
+    "options": [
+      "$\\frac{1}{4}$",
+      "$\\frac{1}{8}$",
+      "$\\frac{1}{10}$",
+      "$\\frac{1}{16}$",
+      "$\\frac{1}{20}$"
+    ],
+    "answer": 1,
+    "solution": "Önce pay ve paydadaki işlemleri ayrı ayrı yapalım:\n\n$$2 - \\frac{3}{4} = \\frac{8}{4} - \\frac{3}{4} = \\frac{5}{4}$$\n\n$$3 + \\frac{1}{5} = \\frac{15}{5} + \\frac{1}{5} = \\frac{16}{5}$$\n\nBölmeyi çarpma olarak yazalım:\n\n$$\\frac{\\frac{5}{4}}{\\frac{16}{5}} = \\frac{5}{4} \\cdot \\frac{5}{16} = \\frac{25}{64}$$\n\nŞimdi $\\frac{8}{25}$ ile çarpalım:\n\n$$\\frac{25}{64} \\cdot \\frac{8}{25} = \\frac{8}{64} = \\frac{1}{8}$$\n\nDoğru cevap B seçeneğidir. Bu soru 2021 ALES/1 kitapçığının 1. sayfasındaki 1. sorudur.",
+    "pdfPage": 3
+  },
+  {
+    "id": "2021-1-say-02",
+    "year": 2021,
+    "session": 1,
+    "period": "İlkbahar",
+    "section": "sayisal",
+    "topic": "Üslü Sayılar",
+    "no": 2,
+    "difficulty": "kolay",
+    "official": true,
+    "stem": "$$\\frac{2^7 + 4^3}{8^3 + 16^2}$$\n\nişleminin sonucu kaçtır?",
+    "options": [
+      "$\\frac{1}{4}$",
+      "$\\frac{3}{4}$",
+      "$\\frac{1}{8}$",
+      "$\\frac{3}{8}$",
+      "$\\frac{5}{8}$"
+    ],
+    "answer": 0,
+    "solution": "Tabanları 2'nin kuvveti olarak yazalım: $4 = 2^2$, $8 = 2^3$, $16 = 2^4$.\n\n$$4^3 = (2^2)^3 = 2^6, \\qquad 8^3 = (2^3)^3 = 2^9, \\qquad 16^2 = (2^4)^2 = 2^8$$\n\nBuna göre ifade şöyle olur:\n\n$$\\frac{2^7 + 2^6}{2^9 + 2^8}$$\n\nPayı $2^6$, paydayı $2^8$ parantezine alalım:\n\n$$\\frac{2^6(2 + 1)}{2^8(2 + 1)} = \\frac{2^6}{2^8} = \\frac{1}{2^2} = \\frac{1}{4}$$\n\nDoğru cevap A seçeneğidir. Bu soru 2021 ALES/1 kitapçığının 1. sayfasındaki 2. sorudur.",
+    "pdfPage": 3
+  },
+  {
+    "id": "2021-1-say-05",
+    "year": 2021,
+    "session": 1,
+    "period": "İlkbahar",
+    "section": "sayisal",
+    "topic": "Sayı Basamakları",
+    "no": 5,
+    "difficulty": "orta",
+    "official": true,
+    "stem": "$A$, $B$ ve $C$ birer rakam olmak üzere\n\n$$\\begin{array}{r} A5B \\\\ -CA3 \\\\ \\hline B79 \\end{array}$$\n\nolduğuna göre $A + B + C$ toplamı kaçtır?",
+    "options": [
+      "11",
+      "13",
+      "15",
+      "17",
+      "19"
+    ],
+    "answer": 1,
+    "solution": "Çıkarma işlemini basamak basamak inceleyelim:\n\nBirler basamağı: $B - 3 = 9$ olması için onlar basamağından bir onluk alınmalıdır. Bu durumda $B + 10 - 3 = 9$, yani $B = 2$ olur.\n\nOnlar basamağı: Bir onluk alındığı için $5$ yerine $4$ kaldı. $4 - A = 7$ negatif çıkacağından yüzler basamağından bir yüzlük alınır: $14 - A = 7$, buradan $A = 7$ bulunur.\n\nYüzler basamağı: Bir yüzlük alındığı için $A - 1 - C = B$ olur. $A = 7$, $B = 2$ yazalım:\n\n$$7 - 1 - C = 2 \\Rightarrow 6 - C = 2 \\Rightarrow C = 4$$\n\nKontrol: $752 - 473 = 279$ ✓\n\n$$A + B + C = 7 + 2 + 4 = 13$$\n\nDoğru cevap B seçeneğidir. Bu soru 2021 ALES/1 kitapçığının 2. sayfasındaki 5. sorudur.",
+    "pdfPage": 4
+  },
+  {
+    "id": "2021-1-say-06",
+    "year": 2021,
+    "session": 1,
+    "period": "İlkbahar",
+    "section": "sayisal",
+    "topic": "Eşitsizlikler",
+    "no": 6,
+    "difficulty": "zor",
+    "official": true,
+    "stem": "$a$, $b$ ve $c$ gerçek sayıları için\n\n$$b + c < 0 < a + b < c$$\n\nolduğuna göre aşağıdaki sıralamalardan hangisi doğrudur?",
+    "options": [
+      "$a < b < c$",
+      "$a < c < b$",
+      "$b < a < c$",
+      "$b < c < a$",
+      "$c < b < a$"
+    ],
+    "answer": 3,
+    "solution": "$a + b < c$ ve $a + b > 0$ olduğundan $c > 0$ olur.\n\n$b + c < 0$ ise $b < -c$ olur. $c > 0$ olduğu için $-c < 0$, dolayısıyla $b < 0$'dır.\n\n$a + b > 0$ ise $a > -b$ olur. $b < -c$ olduğundan $-b > c$, yani $a > c$ elde edilir.\n\nBöylece $b < 0 < c < a$ sıralaması çıkar; yani $b < c < a$.\n\nDoğru cevap D seçeneğidir. Bu soru 2021 ALES/1 kitapçığının 2. sayfasındaki 6. sorudur.",
+    "pdfPage": 4
+  },
+  {
+    "id": "2021-1-say-07",
+    "year": 2021,
+    "session": 1,
+    "period": "İlkbahar",
+    "section": "sayisal",
+    "topic": "Birinci Dereceden Denklemler",
+    "no": 7,
+    "difficulty": "kolay",
+    "official": true,
+    "stem": "$$\\frac{3x - 1}{2} - \\frac{4x - 3}{3} = \\frac{x + 4}{4}$$\n\nolduğuna göre $x$ gerçek sayısı kaçtır?",
+    "options": [
+      "$-7$",
+      "$-6$",
+      "$-5$",
+      "$-4$",
+      "$-3$"
+    ],
+    "answer": 1,
+    "solution": "Paydalar 2, 3 ve 4'tür. Eşitliğin her iki tarafını en küçük ortak kat olan 12 ile çarpalım:\n\n$$6(3x - 1) - 4(4x - 3) = 3(x + 4)$$\n\nParantezleri açalım:\n\n$$18x - 6 - 16x + 12 = 3x + 12$$\n\nBenzer terimleri toplayalım:\n\n$$2x + 6 = 3x + 12 \\Rightarrow 6 - 12 = 3x - 2x \\Rightarrow x = -6$$\n\nKontrol: $x = -6$ için sol taraf $\\frac{-19}{2} - \\frac{-27}{3} = -9{,}5 + 9 = -0{,}5$, sağ taraf $\\frac{-2}{4} = -0{,}5$ ✓\n\nDoğru cevap B seçeneğidir. Bu soru 2021 ALES/1 kitapçığının 2. sayfasındaki 7. sorudur.",
+    "pdfPage": 4
   }
 ]

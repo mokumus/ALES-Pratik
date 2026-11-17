@@ -28,6 +28,10 @@ export const BOOKLETS: Record<string, Booklet> = {
     url: "https://dokuman.osym.gov.tr/pdfdokuman/2025/ALES-1/tsk_13042025.pdf",
     label: "2025 ALES/1 Temel Soru Kitapçığı (ÖSYM)",
   },
+  "2021-1": {
+    url: "https://dokuman.osym.gov.tr/pdfdokuman/2021/ALES-1/CS/ALES1_sorular.pdf",
+    label: "2021 ALES/1 Soru Kitapçığı (ÖSYM)",
+  },
 };
 
 export function bookletOf(question: Question): Booklet | undefined {
