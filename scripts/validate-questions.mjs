@@ -13,7 +13,6 @@ import { dirname, join } from "node:path";
 const here = dirname(fileURLToPath(import.meta.url));
 const file = join(here, "..", "src", "data", "questions.json");
 const bookletsFile = join(here, "..", "src", "data", "booklets.ts");
-const strict = process.argv.includes("--strict");
 
 const SECTIONS = new Set(["sayisal", "sozel"]);
 const DIFFICULTIES = new Set(["kolay", "orta", "zor"]);
@@ -82,20 +81,13 @@ questions.forEach((q, index) => {
     errors.push(`${where}: "stem" çok kısa.`);
   }
 
-  if (q.pdfPage !== undefined) {
+  if (q.official !== true) {
+    errors.push(
+      `${where}: yalnızca resmî (official: true) sorular eklenebilir; soru bir ÖSYM kitapçığından alınmalı.`,
+    );
+  } else {
     if (!Number.isInteger(q.pdfPage) || q.pdfPage < 1) {
-      errors.push(`${where}: "pdfPage" pozitif bir sayfa numarası olmalı.`);
-    }
-    if (!q.official) {
-      errors.push(`${where}: "pdfPage" yalnızca resmî sorularda (official: true) kullanılabilir.`);
-    }
-  }
-
-  if (typeof q.official !== "boolean") {
-    errors.push(`${where}: "official" true/false olmalı.`);
-  } else if (q.official) {
-    if (!Number.isInteger(q.pdfPage)) {
-      errors.push(`${where}: resmî soruda "pdfPage" zorunlu (soruya PDF bağlantısı verilir).`);
+      errors.push(`${where}: "pdfPage" zorunlu; sorunun kitapçıktaki sayfa numarası verilmeli.`);
     }
     if (!bookletKeys.has(`${q.year}-${q.session}`)) {
       errors.push(
@@ -125,13 +117,4 @@ for (const [label, counts] of [...byExam.entries()].sort().reverse()) {
   console.log(`  · ${label}: ${counts.total} soru (sayısal ${counts.sayisal}, sözel ${counts.sozel})`);
 }
 const topics = new Set(questions.map((q) => q.topic));
-const official = questions.filter((q) => q.official).length;
-const sample = questions.filter((q) => !q.official).length;
-console.log(`  · ${topics.size} konu, ${official} resmî soru`);
-if (sample > 0) {
-  console.log(`  · ${sample} örnek soru (PDF bağlantısı yok; --strict ile hata verilir)`);
-}
-if (strict && sample > 0) {
-  console.error(`\n✖ --strict: ${sample} soru resmî değil. Tüm sorular çıkmış soru olmalı.`);
-  process.exit(1);
-}
+console.log(`  · ${topics.size} konu, ${questions.length} resmî soru`);

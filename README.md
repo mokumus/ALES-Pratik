@@ -24,9 +24,8 @@ tarayıcısında (`localStorage`) tutulur.
 - **Kitapçık bağlantısı** — resmî sorularda, sorunun alındığı ÖSYM temel soru kitapçığına (PDF) link
   verilir; tüm kitapçıklara **Resmî Sınavlar** sayfasından ulaşılır.
 - **Resmî sınav arşivi** — ÖSYM'nin yayımladığı 67 ALES kitapçığı (35 tam sınav + 32 %10 kitapçık)
-  doğrudan ÖSYM'nin doküman sunucusuna bağlanır. 2019–2021 tam sınavlarında **optik form** vardır:
-  işaretlemelerini girersin, resmî cevap anahtarıyla karşılaştırılıp net hesaplanır (4 yanlış 1 doğruyu
-  götürür); sonuç tarayıcıda saklanır.
+  doğrudan ÖSYM'nin doküman sunucusuna bağlanır. Her sınavın yanındaki **Çalış** düğmesi o sınavın
+  bankadaki sorularını açar; sorular henüz eklenmediyse kitapçığın PDF'ine yönlendirir.
 - **Karanlık / aydınlık tema**, mobil uyumlu düzen, klavye kısayolları.
 - **Matematik dizgisi** — kesirler, kökler ve üslü ifadeler kitapçıktaki gibi üst üste dizilir (KaTeX).
 - **Veri güdümlü** — yeni soru eklemek için tek bir JSON dosyası düzenlenir; kod değişmez.
@@ -126,8 +125,8 @@ Liste görünümünde matematik düz metne indirgenir (`mathToPlain`).
 | `topic` | Konu adı. Filtre listesi bu alandan otomatik üretilir. |
 | `no` | Sorunun orijinal sınavdaki numarası (sayısal 1–50, sözel 51–100). |
 | `difficulty` | `kolay`, `orta`, `zor`. |
-| `official` | `true` ise soru resmî kaynaktan alınmıştır; arayüzde “Resmî” etiketi görünür ve kitapçık bağlantısı çıkar. `false` ise “Örnek” etiketi görünür. |
-| `pdfPage` | İsteğe bağlı. Sorunun resmî kitapçıktaki sayfa numarası; yalnızca `official: true` ile kullanılabilir. |
+| `official` | Her zaman `true`. Soru yalnızca ÖSYM'nin resmî ALES kitapçığından alınabilir; arayüzde “Resmî” etiketi görünür ve kitapçık bağlantısı çıkar. |
+| `pdfPage` | Zorunlu. Sorunun resmî kitapçıktaki sayfa numarası; PDF bağlantısı `#page=` ile bu sayfayı açar. |
 | `stem` | Soru metni. Düz metin; `\n\n` ile paragraf ayrılır. |
 | `options` | Tam olarak **5** seçenek (A–E). |
 | `answer` | Doğru seçeneğin indeksi: `0` = A … `4` = E. |
@@ -141,8 +140,8 @@ konu listeleri kendiliğinden güncellenir. O dönemin kitapçık PDF adresini
 
 `src/data/officialExams.ts`, ÖSYM'nin yayımladığı tüm ALES kitapçıklarını (2006'dan bugüne) tutar:
 her kayıtta yıl, dönem, tür (`tam` / `yuzde10`) ve doğrudan `dokuman.osym.gov.tr` adresine giden
-bağlantılar bulunur. Cevap anahtarı aynı PDF'in sonunda yayımlanan 2019–2021 tam sınavlarında
-`answers` alanı doludur (50 sayısal + 50 sözel harf); optik form yalnızca bu sınavlarda görünür.
+bağlantılar bulunur. Arşivdeki her sınavın yanındaki **Çalış** düğmesi, soru bankasında o sınava ait
+soruları açar; sorular henüz eklenmediyse kitapçığın PDF'ine yönlendiren bir bilgilendirme gösterilir.
 
 Bağlantılar ÖSYM'nin duyuru sayfalarından derlenmiştir; uygulama PDF'leri barındırmaz veya
 kopyalamaz. Yeni bir sınav yayımlandığında `officialExams.ts` içine aynı yapıda bir kayıt eklemek
@@ -150,16 +149,16 @@ yeterlidir.
 
 ### İçerik ve telif notu
 
-Depodaki 101 sorunun 100'ü, 2025–2026 ALES sınavlarının kapsamına ve zorluk düzeyine göre **özgün
-olarak yazılmış alıştırma sorularıdır**; `official: false` olarak işaretlenmiş ve arayüzde “Örnek”
-etiketiyle gösterilir. 1 soru ise 2026 ALES/1 kitapçığından alınmıştır ve `official: true` olarak
-işaretlidir.
+Soru bankası yalnızca ÖSYM'nin resmî ALES kitapçıklarında yer alan sorulardan oluşur; uygulamada
+özgün/örnek soru bulunmaz. Her soru `official: true` olarak işaretlidir, kitapçıktaki sayfa numarası
+(`pdfPage`) verilir ve kartında o sayfayı açan PDF bağlantısı gösterilir. Doğrulayıcı
+(`npm run validate`), resmî olmayan veya kitapçık adresi tanımlı olmayan bir soru eklendiğinde hata
+verir.
 
 Kitapçık bağlantısı ilkesi: PDF bağlantısı yalnızca gerçekten o kitapçıkta yer alan sorularda
-gösterilir. Örnek sorularda bağlantı verilmez, çünkü o sorular ÖSYM kitapçıklarında bulunmaz; bu tür
-bir bağlantı kullanıcıyı yanıltır. Tüm sınav kitapçıklarına **Resmî Sınavlar** sayfasından
-erişilebilir. PDF'ler projede barındırılmaz, doğrudan ÖSYM'nin sunucusundan açılır; resmî soruların
-telif koşullarını kontrol etmek yayıncının sorumluluğundadır. Uygulama ÖSYM ile bağlantılı değildir.
+gösterilir. Tüm sınav kitapçıklarına **Resmî Sınavlar** sayfasından erişilebilir. PDF'ler projede
+barındırılmaz, doğrudan ÖSYM'nin sunucusundan açılır; resmî soruların telif koşullarını kontrol etmek
+yayıncının sorumluluğundadır. Uygulama ÖSYM ile bağlantılı değildir.
 
 ---
 
@@ -233,11 +232,11 @@ ALES-Pratik/
    ├─ data/
    │  ├─ questions.json       # ← soru bankası (tek düzenlenecek dosya)
    │  ├─ booklets.ts          # sınav dönemi → resmî kitapçık PDF adresi
-   │  ├─ officialExams.ts     # 67 ÖSYM kitapçığı + cevap anahtarları
+   │  ├─ officialExams.ts     # 67 ÖSYM kitapçığı ve bağlantıları
    │  └─ index.ts             # sınav/konu türetimi, arama, düz metin yardımcıları
    ├─ lib/
    │  ├─ router.ts            # hash tabanlı yönlendirme (#/calis, #/sorular, #/resmi)
-   │  └─ store.ts             # localStorage ilerleme, optik form sonuçları, tema
+   │  └─ store.ts             # localStorage ilerleme ve tema
    ├─ components/
    │  ├─ Layout.tsx           # üst menü, tema düğmesi, alt bilgi
    │  ├─ MetaChips.tsx        # sınav/bölüm/konu etiketleri + kitapçık bağlantısı
@@ -247,7 +246,7 @@ ALES-Pratik/
       ├─ Home.tsx             # tanıtım, sınav dönemleri, konular, arşiv çağrısı
       ├─ Practice.tsx         # çalışma ekranı, test modları, adres güncellemesi
       ├─ Bank.tsx             # filtrelenebilir soru listesi
-      └─ Official.tsx         # resmî arşiv ve optik form
+      └─ Official.tsx         # resmî arşiv ve sınav başına Çalış düğmeleri
 ```
 
 ## Teknoloji

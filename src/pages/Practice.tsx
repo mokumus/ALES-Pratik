@@ -12,7 +12,7 @@ const SET_LABELS: Record<SetMode, string> = {
   all: "Tüm sorular",
   unsolved: "Çözülmemişler",
   wrong: "Yanlışlarım",
-  quick: "Hızlı test (10)",
+  quick: "Hızlı test",
 };
 
 function mulberry32(seed: number) {

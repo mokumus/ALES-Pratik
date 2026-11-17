@@ -594,7 +594,7 @@ kbd {
   color: var(--ink-2);
 }
 
-.preview__option span {
+.preview__option > span:first-child {
   display: grid;
   place-items: center;
   width: 20px;
@@ -604,6 +604,7 @@ kbd {
   font-size: 10.5px;
   font-weight: 700;
   color: var(--muted);
+  flex-shrink: 0;
 }
 
 .preview__option.is-correct {
@@ -612,7 +613,7 @@ kbd {
   color: var(--ok);
 }
 
-.preview__option.is-correct span {
+.preview__option.is-correct > span:first-child {
   background: var(--ok);
   color: #fff;
 }

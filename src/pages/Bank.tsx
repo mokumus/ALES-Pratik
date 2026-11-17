@@ -189,17 +189,13 @@ export default function Bank({ params }: { params: URLSearchParams }) {
       <div className="notice notice--muted">
         <h3>Kaynak notu</h3>
         <p>
-          Etiketlerdeki sınav dönemleri (2026 ALES/1, 2025 ALES/2, 2025 ALES/1) soruların hazırlanırken
-          temel alındığı sınavları gösterir. “Örnek” etiketli sorular bu sınavların kapsam ve zorluk
-          düzeyine göre yazılmış <strong>özgün alıştırma sorularıdır</strong>; ÖSYM kitapçıklarında bu
-          hâliyle yer almazlar.
+          Bankadaki sorular yalnızca ÖSYM'nin resmî ALES kitapçıklarından alınır; her sorunun kartında
+          ait olduğu kitapçığın ilgili sayfasına giden bir PDF bağlantısı bulunur. Soru sayısı, kitapçık
+          sayfaları eklendikçe artar.
         </p>
         <p className="notice__small">
-          Bu nedenle örnek sorularda kitapçık bağlantısı gösterilmez; yanlış yönlendirmemek için yalnızca
-          gerçekten o kitapçıktan alınmış sorularda (<code>official: true</code>, istenirse{" "}
-          <code>pdfPage</code> ile sayfa numarası) bağlantı görünür. Kitapçıkların kendisine{" "}
-          <a href="#/resmi">resmî sınav arşivinden</a> ulaşabilirsin; PDF'ler projede barındırılmaz,
-          doğrudan ÖSYM'nin sunucusundan açılır.
+          Kitapçıkların tamamına <a href="#/resmi">resmî sınav arşivinden</a> ulaşabilirsin; PDF'ler
+          projede barındırılmaz, doğrudan ÖSYM'nin sunucusundan açılır.
         </p>
         <p className="notice__small">
           Her sorunun kendi adresi vardır: bir soruyu açtığında adres çubuğundaki bağlantı o soruyu

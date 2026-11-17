@@ -3,17 +3,19 @@ import { BOOKLETS } from "../data/booklets";
 import { officialCounts } from "../data/officialExams";
 import { scoreOf, useProgress } from "../lib/store";
 import { navigate } from "../lib/router";
+import MathText from "../components/MathText";
 
 export default function Home() {
   const progress = useProgress();
   const overall = scoreOf(questions, progress);
   const solvedIds = Object.keys(progress.answers).length;
+  const featured = questions[0];
 
   return (
     <div className="page">
       <section className="hero">
         <div className="hero__content">
-          <span className="eyebrow">2025–2026 ALES · Güncel soru bankası</span>
+          <span className="eyebrow">Çıkmış ALES soruları · Resmî ÖSYM kitapçıkları</span>
           <h1>
             ALES sorularıyla
             <br />
@@ -28,7 +30,7 @@ export default function Home() {
               Çalışmaya başla
             </button>
             <button type="button" className="btn btn--soft btn--lg" onClick={() => navigate("practice", { set: "quick", n: 10 })}>
-              10 soruluk hızlı test
+              Hızlı test
             </button>
           </div>
           <dl className="hero__stats">
@@ -52,29 +54,38 @@ export default function Home() {
         </div>
 
         <aside className="hero__preview" aria-hidden="true">
-          <div className="preview__head">
-            <span className="preview__tag">2026 ALES/1</span>
-            <span className="preview__tag preview__tag--soft">Sayısal</span>
-          </div>
-          <div className="preview__stem">
-            Ardışık üç tek doğal sayının toplamı 63&apos;tür. Bu sayıların en büyüğü kaçtır?
-          </div>
-          <div className="preview__options">
-            {["19", "21", "23", "25"].map((value, i) => (
-              <div key={value} className={`preview__option${i === 2 ? " is-correct" : ""}`}>
-                <span>{"ABCD"[i]}</span>
-                {value}
+          {featured && (
+            <>
+              <div className="preview__head">
+                <span className="preview__tag">
+                  {featured.year} ALES/{featured.session}
+                </span>
+                <span className="preview__tag preview__tag--soft">{SECTION_LABELS[featured.section]}</span>
               </div>
-            ))}
-          </div>
-          <div className="preview__foot">Cevabı göster · Çözümü gör</div>
+              <div className="preview__stem">
+                <MathText text={featured.stem} />
+              </div>
+              <div className="preview__options">
+                {featured.options.map((value, i) => (
+                  <div key={i} className={`preview__option${i === featured.answer ? " is-correct" : ""}`}>
+                    <span>{"ABCDE"[i]}</span>
+                    <MathText text={value} />
+                  </div>
+                ))}
+              </div>
+              <div className="preview__foot">Cevabı göster · Çözümü gör</div>
+            </>
+          )}
         </aside>
       </section>
 
       <section className="block">
         <div className="block__head">
           <h2>Sınav dönemleri</h2>
-          <p>2026 ALES/1, 2025 ALES/2 ve 2025 ALES/1 kapsamına göre hazırlanmış sorularla dönem dönem çalış.</p>
+          <p>
+            Sorular yalnızca ÖSYM'nin resmî ALES kitapçıklarından alınır ve sınav sınav eklenir. Her
+            sorunun kartında kitapçıktaki sayfasına giden PDF bağlantısı bulunur.
+          </p>
         </div>
         <div className="grid grid--exams">
           {exams.map((exam) => {

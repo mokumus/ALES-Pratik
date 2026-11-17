@@ -37,9 +37,8 @@ export function bookletOf(question: Question): Booklet | undefined {
 /**
  * Sorunun kitapçık bağlantısı.
  *
- * Yalnızca resmî sorular (official: true) için döner: örnek sorular ÖSYM
- * kitapçıklarında yer almadığı için o sorulara kitapçık bağlantısı göstermek
- * yanıltıcı olur. Resmî sorularda `pdfPage` varsa bağlantı doğrudan o sayfayı açar.
+ * Bankada yalnızca resmî sorular (official: true) bulunur. `pdfPage` varsa
+ * bağlantı doğrudan o sayfayı açar.
  */
 export function bookletUrlFor(question: Question): string | undefined {
   if (!question.official) return undefined;

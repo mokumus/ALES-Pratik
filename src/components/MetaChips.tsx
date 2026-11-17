@@ -42,11 +42,6 @@ export default function MetaChips({
       <span className={`chip chip--diff chip--diff-${question.difficulty}`}>
         {DIFFICULTY_LABEL[question.difficulty]}
       </span>
-      {!question.official && (
-        <span className="chip chip--ghost" title="ALES formatına göre hazırlanmış özgün alıştırma sorusu">
-          Örnek
-        </span>
-      )}
       {question.official && (
         <span className="chip chip--official" title="Resmî ÖSYM soru kitapçığından alınmış soru">
           Resmî
